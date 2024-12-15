@@ -1,0 +1,178 @@
+.auth-content {
+    width: 100%;
+    min-height: calc(100vh - 82px);
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+}
+
+.register-form,
+.login-form {
+    width: 680px;
+    padding: 20px;
+    margin-top: 60px;
+}
+
+.register-form h1,
+.login-form h1 {
+    font-family: Inter, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 43.57px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 680px;
+    height: 57.09px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.register-button,
+.login-button {
+    width: 680px;
+    height: 65.25px;
+    background: #FF5555;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: Inter, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 31.47px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.login-link,
+.register-link {
+    width: 257px;
+    height: 53.29px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.login-link a,
+.register-link a {
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    color: #0073CC;
+    text-decoration: none;
+}
+
+/* ログインページ固有のスタイル */
+.login-form {
+    height: 656px;
+    margin-top: 60px;
+}
+
+.login-form h1 {
+    width: 144px;
+    height: 46.04px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-form .form-group label {
+    height: 33.86px;
+}
+
+.login-form .form-group input {
+    margin-top: 10px;
+}
+
+.login-button {
+    margin-top: 40px;
+}
+
+.error-message {
+    color: #FF0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.is-invalid {
+    border-color: #FF0000;
+}
+
+/* PC (1400-1540px) */
+@media screen and (max-width: 1540px) and (min-width: 1400px) {
+    .auth-content {
+        width: 100%;
+    }
+
+    .register-form,
+    .login-form {
+        width: 80%;
+        max-width: 680px;
+    }
+
+    .form-group input,
+    .register-button,
+    .login-button {
+        width: 100%;
+    }
+}
+
+/* タブレット (768-850px) */
+@media screen and (max-width: 850px) and (min-width: 768px) {
+    .auth-content {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .register-form,
+    .login-form {
+        width: 100%;
+        max-width: 680px;
+        margin-top: 40px;
+    }
+
+    .register-form h1,
+    .login-form h1 {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+    .form-group label {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .form-group input,
+    .register-button,
+    .login-button {
+        width: 100%;
+        height: 50px;
+    }
+
+    .register-button,
+    .login-button {
+        font-size: 22px;
+    }
+
+    .login-link,
+    .register-link {
+        width: 100%;
+    }
+}
