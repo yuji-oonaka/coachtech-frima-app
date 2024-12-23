@@ -12,12 +12,22 @@
 <body>
     <header class="auth-header">
         <nav>
-            <a href="{{ url('/') }}">
+            <a href="{{ route('items.index') }}">
                 <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH" class="header-logo">
             </a>
+            <div class="search-box">
+                <form action="{{ route('items.search') }}" method="GET">
+                    <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+                </form>
+            </div>
+            @auth
+                <form method="POST" action="{{ route('logout') }}" class="header-logout">
+                    @csrf
+                    <button type="submit" class="logout-button">ログアウト</button>
+                </form>
+            @endauth
         </nav>
     </header>
-
 
     <main>
         @yield('content')

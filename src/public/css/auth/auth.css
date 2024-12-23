@@ -115,6 +115,31 @@
     border-color: #FF0000;
 }
 
+.search-result-message {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.search-result-message p {
+    font-size: 16px;
+    color: #333333;
+}
+
+.product-price {
+    font-size: 16px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.no-items-message {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 16px;
+    color: #333333;
+}
+
 /* PC (1400-1540px) */
 @media screen and (max-width: 1540px) and (min-width: 1400px) {
     .auth-content {

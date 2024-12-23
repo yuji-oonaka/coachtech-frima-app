@@ -11,3 +11,46 @@
     margin-top: 22px;
     margin-left: 25px;
 }
+
+.auth-header nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.search-box {
+    flex-grow: 1;
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 36px;
+    padding: 0 15px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #999999;
+}
+
+.header-logout {
+    margin: 0;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 16px;
+}
+
+.logout-button:hover {
+    opacity: 0.8;
+}
