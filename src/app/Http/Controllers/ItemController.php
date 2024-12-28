@@ -15,7 +15,10 @@ class ItemController extends Controller
 
         $items = $query->latest()->get();
 
-        return view('items.index', compact('items'));
+        return view('items.index', [
+            'items' => $items,
+            'tab' => 'recommend'
+        ]);
     }
 
     public function listMyListItems(Request $request)
@@ -42,15 +45,23 @@ class ItemController extends Controller
 
     public function searchItems(Request $request)
     {
-        $query = Item::query()
-            ->whereNot('user_id', Auth::id());
+        $tab = $request->get('tab', 'recommend');
+
+        if ($tab === 'mylist') {
+            if (!Auth::check()) {
+                return redirect()->route('login');
+            }
+            
+            $query = Auth::user()->likedItems();
+        } else {
+            $query = Item::query()->whereNot('user_id', Auth::id());
+        }
 
         if ($request->filled('keyword')) {
             $query->where('name', 'like', "%{$request->keyword}%");
         }
 
         $items = $query->latest()->get();
-        $tab = $request->get('tab', 'recommend');
 
         return view('items.index', [
             'items' => $items,
@@ -58,5 +69,19 @@ class ItemController extends Controller
             'tab' => $tab,
             'isSearchResult' => true
         ]);
+    }
+
+    public function show($id)
+    {
+        $item = Item::with(['categories', 'comments.user', 'likes'])->findOrFail($id);
+        $likeCount = $item->likes->count();
+        $commentCount = $item->comments->count();
+        $isLiked = false;
+
+        if (Auth::check()) {
+            $isLiked = $item->likes->where('user_id', Auth::id())->count() > 0;
+        }
+
+        return view('items.show', compact('item', 'likeCount', 'commentCount', 'isLiked'));
     }
 }

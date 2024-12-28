@@ -3,15 +3,31 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\CommentController;
 
 // 商品一覧表示（トップページ）
 Route::get('/', [ItemController::class, 'listItems'])->name('items.index');
 
-// 商品検索
+// 検索機能は認証不要なので、先に定義
 Route::get('/items/search', [ItemController::class, 'searchItems'])->name('items.search');
 
 // 認証が必要なルート
 Route::middleware(['auth'])->group(function () {
-    // マイリスト表示
     Route::get('/items/mylist', [ItemController::class, 'listMyListItems'])->name('items.mylist');
+    Route::get('/mypage', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/mypage/profile', [ProfileController::class, 'showEditForm'])->name('profile.edit');
+    Route::post('/mypage/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::get('/items/create', [ItemController::class, 'showSellForm'])->name('items.create');
+    Route::post('/items', [ItemController::class, 'store'])->name('items.store');
+    Route::get('/purchase/{id}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::post('/items/{id}/like', [LikeController::class, 'toggleLike'])->name('items.like');
+    Route::get('/purchase/{id}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::post('/purchase/{id}', [PurchaseController::class, 'store'])->name('purchase.store');
 });
+
+// 商品詳細は認証不要なので、最後に定義
+Route::get('/items/{id}', [ItemController::class, 'show'])->name('items.show');

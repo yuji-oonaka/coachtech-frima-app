@@ -40,6 +40,16 @@ class Item extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function isLikedBy($user)
+    {
+        if ($user) {
+            return Like::where('user_id', $user->id)
+                    ->where('item_id', $this->id)
+                    ->exists();
+        }
+        return false;
+    }
+
     public function purchases()
     {
         return $this->hasMany(Purchase::class);

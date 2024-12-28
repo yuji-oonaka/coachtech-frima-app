@@ -59,6 +59,17 @@
     width: 290px;
 }
 
+.product-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.product-item-link:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
 .product-image-wrapper {
     position: relative;
     width: 290px;
@@ -98,22 +109,29 @@
     color: #333333;
 }
 
-
-/* レスポンシブ対応 */
-@media (max-width: 1200px) {
+@media (max-width: 1540px) and (min-width: 1400px) {
     .product-grid {
-        grid-template-columns: repeat(3, 1fr);
+        width: 95%;
+        gap: 30px;
     }
 }
 
-@media (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
+@media (max-width: 850px) and (min-width: 768px) {
+    .product-listing {
+        padding: 0 10px;
     }
-}
 
-@media (max-width: 480px) {
     .product-grid {
-        grid-template-columns: repeat(1, 1fr);
+        width: 98%;
+        gap: 20px;
+    }
+
+    .product-item {
+        width: 240px;
+    }
+
+    .product-image-wrapper {
+        width: 240px;
+        height: 240px;
     }
 }

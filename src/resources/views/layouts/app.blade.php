@@ -11,26 +11,37 @@
 </head>
 <body>
     <header class="auth-header">
-        <nav>
-            <a href="{{ route('items.index') }}">
+        <div class="header-content">
+            <a href="{{ route('items.index') }}" class="logo-wrapper">
                 <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH" class="header-logo">
             </a>
-            <div class="search-box">
-                <form action="{{ route('items.search') }}" method="GET">
+            <div class="search-wrapper">
+                <form action="{{ route('items.search') }}" method="GET" class="search-form">
                     <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+                    @if(request()->routeIs('items.mylist'))
+                        <input type="hidden" name="tab" value="mylist">
+                    @endif
                 </form>
             </div>
-            @auth
-                <form method="POST" action="{{ route('logout') }}" class="header-logout">
-                    @csrf
-                    <button type="submit" class="logout-button">ログアウト</button>
-                </form>
-            @endauth
-        </nav>
+            <nav class="header-nav">
+                @auth
+                    <form method="POST" action="{{ route('logout') }}" class="header-logout">
+                        @csrf
+                        <button type="submit" class="nav-link">ログアウト</button>
+                    </form>
+                    <a href="{{ route('profile.show') }}" class="nav-link">マイページ</a>
+                    <a href="{{ route('items.create') }}" class="sell-button">出品</a>
+                @else
+                    <a href="{{ route('login') }}" class="nav-link">ログイン</a>
+                    <a href="{{ route('register') }}" class="nav-link">マイページ</a>
+                    <a href="{{ route('login') }}" class="sell-button">出品</a>
+                @endauth
+            </nav>
+        </div>
     </header>
-
     <main>
         @yield('content')
+        @yield('scripts')
     </main>
 
     <footer>
