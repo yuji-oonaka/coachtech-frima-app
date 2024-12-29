@@ -20,7 +20,7 @@
             <h1 class="item-name">{{ $item->name }}</h1>
             <p class="brand-name">{{ $item->brand_name }}</p>
             <div class="price">
-                <span class="price-number">¥{{ number_format($item->price) }}</span>
+                <span class="price-number"><span class="price-mark">¥</span>{{ number_format($item->price) }}</span>
                 <span class="price-tax">(税込)</span>
             </div>
         </div>
@@ -60,10 +60,7 @@
         <div class="product-description">
             <h2>商品説明</h2>
             <div class="description-content">
-                <p><span class="label">カラー：</span>グレー</p>
-                <p>新品</p>
-                <p>商品の状態は良好です。傷もありません。</p>
-                <p>購入後、即発送いたします。</p>
+                {!! nl2br(e($item->description)) !!}
             </div>
         </div>
 
@@ -100,16 +97,14 @@
             @auth
                 <div class="comment-form">
                     <h3>商品へのコメント</h3>
-                    <form action="{{ route('comments.store') }}" method="POST">
+                    <form action="{{ route('comments.store') }}" method="POST" novalidate>
                         @csrf
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <div class="form-group">
-                            <textarea 
+                            <textarea
                                 name="content"
-                                placeholder="コメントを入力してください"
                                 class="@error('content') is-invalid @enderror"
                                 required
-                                maxlength="255"
                             >{{ old('content') }}</textarea>
                             @error('content')
                                 <div class="error-message">

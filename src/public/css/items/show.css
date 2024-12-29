@@ -56,6 +56,10 @@
     margin-bottom: 30px;
 }
 
+.price-mark {
+    font-size: 30px;
+}
+
 .price-tax {
     font-size: 16px;
     color: #333;
@@ -100,13 +104,13 @@
 
 .like-icon,
 .comment-icon {
-    font-size: 32px;
+    font-size: 40px;
     margin-bottom: 5px;
 }
 
 .like-count,
 .comment-count {
-    font-size: 14px;
+    font-size: 18px;
     color: #666;
 }
 
@@ -195,6 +199,7 @@
 
 .info-row .value {
     flex: 1;
+    font-size: 20px;
 }
 
 .category-tags {
@@ -205,9 +210,10 @@
 
 .category-tag {
     background: #EEEEEE;
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 24px;
+    font-size: 20px;
+    line-height: 30px;
 }
 
 .product-description {
@@ -224,7 +230,7 @@
 }
 
 .description-content {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.6;
 }
 
@@ -235,7 +241,7 @@
 }
 
 .product-info .label {
-    font-size: 16px;
+    font-size: 20px;
     color: #666;
     font-weight: bold;
     text-decoration: none;

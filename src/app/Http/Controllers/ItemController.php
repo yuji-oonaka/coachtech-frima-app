@@ -23,45 +23,45 @@ class ItemController extends Controller
 
     public function listMyListItems(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
+        // 認証状態に関わらず、空のコレクションを初期値として設定
+        $items = collect([]);
+
+        // 認証済みの場合のみ、マイリストのアイテムを取得
+        if (Auth::check()) {
+            $query = Auth::user()->likedItems();
+            if ($request->filled('keyword')) {
+                $query->where('name', 'like', "%{$request->keyword}%");
+            }
+            $items = $query->latest()->get();
         }
-
-        $query = Auth::user()->likedItems();
-
-        // 検索キーワードが存在する場合、マイリストでも検索を適用
-        if ($request->filled('keyword')) {
-            $query->where('name', 'like', "%{$request->keyword}%");
-        }
-
-        $items = $query->latest()->get();
 
         return view('items.index', [
             'items' => $items,
             'tab' => 'mylist',
-            'keyword' => $request->keyword  // 検索キーワードをビューに渡す
+            'keyword' => $request->keyword
         ]);
     }
 
     public function searchItems(Request $request)
     {
         $tab = $request->get('tab', 'recommend');
+        $items = collect([]);
 
         if ($tab === 'mylist') {
-            if (!Auth::check()) {
-                return redirect()->route('login');
+            if (Auth::check()) {
+                $query = Auth::user()->likedItems();
+                if ($request->filled('keyword')) {
+                    $query->where('name', 'like', "%{$request->keyword}%");
+                }
+                $items = $query->latest()->get();
             }
-            
-            $query = Auth::user()->likedItems();
         } else {
             $query = Item::query()->whereNot('user_id', Auth::id());
+            if ($request->filled('keyword')) {
+                $query->where('name', 'like', "%{$request->keyword}%");
+            }
+            $items = $query->latest()->get();
         }
-
-        if ($request->filled('keyword')) {
-            $query->where('name', 'like', "%{$request->keyword}%");
-        }
-
-        $items = $query->latest()->get();
 
         return view('items.index', [
             'items' => $items,
@@ -70,6 +70,7 @@ class ItemController extends Controller
             'isSearchResult' => true
         ]);
     }
+
 
     public function show($id)
     {

@@ -1,0 +1,236 @@
+.purchase-container {
+    max-width: 1440px;
+    margin: 80px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 60px;
+}
+
+.purchase-left {
+    flex: 1;
+}
+
+.product-summary {
+    display: flex;
+    gap: 40px;
+}
+
+.product-image {
+    width: 177.53px;
+    height: 177.53px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-details {
+    width: 326px;
+}
+
+.product-name {
+    font-family: Inter;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36.31px;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.price-yen {
+    font-family: Inter;
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 32.68px;
+}
+
+.divider {
+    width: 805px;
+    height: 0;
+    border: none;
+    border-top: 1px solid #000000;
+    margin: 40px 0;
+}
+
+.payment-section,
+.shipping-section {
+    width: 805px;
+    margin-left: 35px;
+    position: relative;
+}
+
+.payment-select-wrapper {
+    position: relative;
+    width: 265px;
+    margin-left: 61px;
+    margin-top: 30px;
+}
+
+.payment-select {
+    width: 100%;
+    height: 31px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+}
+
+.selected-option {
+    line-height: 31px;
+    color: #666;
+}
+
+.payment-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    background: #FFFFFF;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.payment-option {
+    position: relative;
+    padding: 8px 15px 8px 35px;
+    /* チェックマークのスペースを確保 */
+    cursor: pointer;
+    background: #636769;
+    color: #FFFFFF;
+    height: 31px;
+    display: flex;
+    align-items: center;
+}
+
+.payment-option:hover {
+    background: #4A90E2;
+}
+
+.checkmark {
+    position: absolute;
+    left: 15px;
+    display: none;
+}
+
+.payment-option.selected .checkmark {
+    display: inline-block;
+}
+
+.payment-option:not(:last-child) {
+    border-bottom: 1px solid #5F5F5F;
+}
+
+.option-text {
+    line-height: 31px;
+}
+
+.checkmark {
+    display: none;
+    width: 20px;
+}
+
+.payment-option.selected .checkmark {
+    display: inline-block;
+}
+
+.shipping-section {
+    width: 805px;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.shipping-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 805px;
+    padding-right: 65px;
+}
+
+.change-address {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    color: #0073CC;
+    text-decoration: none;
+}
+
+.address-info {
+    width: 280px;
+    margin-left: 61px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.postal-code,
+.address-text {
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24.2px;
+}
+
+.purchase-right {
+    width: 440px;
+}
+
+.confirm-surface {
+    width: 440px;
+    height: 230px;
+    border: 1px solid #000000;
+}
+
+.price-summary,
+.payment-info {
+    height: 115px;
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+}
+
+.label,
+.value {
+    width: 220px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.value {
+    font-size: 24px;
+    line-height: 29.05px;
+}
+
+
+.purchase-button {
+    width: 440px;
+    height: 60px;
+    background: #FF5555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 26px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.shipping-divider {
+    width: 805px;
+    height: 0;
+    border: none;
+    border-top: 1px solid #000000;
+    margin: 40px 0;
+}

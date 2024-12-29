@@ -11,11 +11,9 @@
             <li class="{{ !request()->routeIs('items.mylist') && $tab !== 'mylist' ? 'active' : '' }}">
                 <a href="{{ request('keyword') ? route('items.search', ['keyword' => request('keyword')]) : route('items.index') }}">おすすめ</a>
             </li>
-            @auth
             <li class="{{ request()->routeIs('items.mylist') || $tab === 'mylist' ? 'active' : '' }}">
                 <a href="{{ request('keyword') ? route('items.search', ['keyword' => request('keyword'), 'tab' => 'mylist']) : route('items.mylist') }}">マイリスト</a>
             </li>
-            @endauth
         </ul>
     </div>
 
@@ -47,6 +45,7 @@
                     @endforeach
                 @endif
             @else
+                <p class="no-items-message">マイリストを利用するにはログインが必要です</p>
             @endauth
         @else
             @if($items->isEmpty())
