@@ -6,26 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('postal_code')->check("postal_code REGEXP '^[0-9]{3}-[0-9]{4}$'");
-            $table->string('prefecture');
-            $table->string('city');
-            $table->string('street');
+            $table->string('postal_code', 8);
+            $table->string('address');
             $table->string('building')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('addresses');

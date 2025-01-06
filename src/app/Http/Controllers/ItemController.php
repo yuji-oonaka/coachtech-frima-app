@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
-    public function listItems()
+    public function listItems(Request $request)
     {
+        $tab = $request->query('tab', 'recommend');
+
+        if ($tab === 'mylist') {
+            return $this->listMyListItems($request);
+        }
+
         $query = Item::query()
-            ->whereNot('user_id', Auth::id());
+            ->whereNot('user_id', Auth::id())
+            ->where('status', '出品中');
 
         $items = $query->latest()->get();
 
@@ -23,14 +31,13 @@ class ItemController extends Controller
 
     public function listMyListItems(Request $request)
     {
-        // 認証状態に関わらず、空のコレクションを初期値として設定
         $items = collect([]);
+        $keyword = $request->keyword;
 
-        // 認証済みの場合のみ、マイリストのアイテムを取得
         if (Auth::check()) {
             $query = Auth::user()->likedItems();
             if ($request->filled('keyword')) {
-                $query->where('name', 'like', "%{$request->keyword}%");
+                $query->where('name', 'like', "%{$keyword}%");
             }
             $items = $query->latest()->get();
         }
@@ -38,7 +45,7 @@ class ItemController extends Controller
         return view('items.index', [
             'items' => $items,
             'tab' => 'mylist',
-            'keyword' => $request->keyword
+            'keyword' => $keyword
         ]);
     }
 
@@ -71,18 +78,25 @@ class ItemController extends Controller
         ]);
     }
 
-
-    public function show($id)
+    public function displayItemDetails($item_id)
     {
-        $item = Item::with(['categories', 'comments.user', 'likes'])->findOrFail($id);
+        $item = Item::with(['categories', 'comments.user', 'likes'])->findOrFail($item_id);
         $likeCount = $item->likes->count();
         $commentCount = $item->comments->count();
-        $isLiked = false;
-
-        if (Auth::check()) {
-            $isLiked = $item->likes->where('user_id', Auth::id())->count() > 0;
-        }
+        $isLiked = Auth::check() ? $item->likes->contains('user_id', Auth::id()) : false;
 
         return view('items.show', compact('item', 'likeCount', 'commentCount', 'isLiked'));
+    }
+
+    public function showSellForm()
+    {
+        $categories = Category::all();
+        return view('items.create', compact('categories'));
+    }
+
+    public function createListing(Request $request)
+    {
+        // バリデーションと商品登録のロジックをここに実装
+        // 成功したら商品詳細ページにリダイレクト
     }
 }

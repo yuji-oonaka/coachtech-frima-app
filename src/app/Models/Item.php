@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -20,6 +21,13 @@ class Item extends Model
         'status',
     ];
 
+    protected $casts = [
+        'price' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -27,7 +35,7 @@ class Item extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'item_category');
+        return $this->belongsToMany(Category::class, 'item_category')->withTimestamps();
     }
 
     public function comments()
@@ -42,12 +50,7 @@ class Item extends Model
 
     public function isLikedBy($user)
     {
-        if ($user) {
-            return Like::where('user_id', $user->id)
-                    ->where('item_id', $this->id)
-                    ->exists();
-        }
-        return false;
+        return $user ? $this->likes()->where('user_id', $user->id)->exists() : false;
     }
 
     public function purchases()
@@ -55,4 +58,3 @@ class Item extends Model
         return $this->hasMany(Purchase::class);
     }
 }
-

@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function postComment(Request $request, $item_id)
     {
         $request->validate([
             'content' => 'required|max:255',
-            'item_id' => 'required|exists:items,id'
         ], [
             'content.required' => 'コメントを入力してください',
             'content.max' => 'コメントは255文字以内で入力してください'
@@ -20,7 +19,7 @@ class CommentController extends Controller
 
         Comment::create([
             'user_id' => auth()->id(),
-            'item_id' => $request->item_id,
+            'item_id' => $item_id,
             'content' => $request->content
         ]);
 

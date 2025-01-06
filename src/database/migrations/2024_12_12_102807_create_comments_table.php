@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
             $table->string('content', 255);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

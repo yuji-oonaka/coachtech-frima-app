@@ -1,0 +1,91 @@
+.profile-edit-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.page-title {
+    width: 299px;
+    font-family: Inter;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 43.57px;
+    margin: 0 auto 40px;
+}
+
+.profile-image-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    background: #D9D9D9;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 232px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.select-image-button {
+    width: 179px;
+    height: 49px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #FF5555;
+    border-radius: 10px;
+    color: #FF5555;
+    cursor: pointer;
+}
+
+.form-group {
+    width: 680px;
+    margin: 0 auto 20px;
+}
+
+.form-group label {
+    display: block;
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29.05px;
+    margin-bottom: 10px;
+}
+
+.form-group input {
+    width: 100%;
+    height: 55px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.update-button {
+    width: 680px;
+    height: 60px;
+    background: #FF5555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: Inter;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 31.47px;
+    margin: 40px auto;
+    display: block;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

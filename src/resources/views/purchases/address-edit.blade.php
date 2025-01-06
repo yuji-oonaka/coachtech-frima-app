@@ -7,7 +7,7 @@
 @section('content')
 <div class="address-container">
     <h1 class="page-title">住所の変更</h1>
-    <form action="{{ route('profile.update') }}" method="POST" class="address-form">
+    <form action="{{ route('purchase.address.update', ['item_id' => $item->id]) }}" method="POST" class="address-form">
         @csrf
         <div class="form-group">
             <label for="postal_code">郵便番号</label>
@@ -18,6 +18,8 @@
                 value="{{ old('postal_code', $user->address->postal_code ?? '') }}"
                 class="form-input @error('postal_code') is-invalid @enderror"
                 required
+                pattern="\d{3}-\d{4}"
+                placeholder="123-4567"
             >
             @error('postal_code')
                 <div class="error-message">{{ $message }}</div>
@@ -30,7 +32,7 @@
                 type="text"
                 id="address"
                 name="address"
-                value="{{ old('address', $user->address->full_address ?? '') }}"
+                value="{{ old('address', $user->address->address ?? '') }}"
                 class="form-input @error('address') is-invalid @enderror"
                 required
             >
@@ -40,13 +42,14 @@
         </div>
 
         <div class="form-group">
-            <label for="building">建物名</label>
+            <label for="building">建物名（任意）</label>
             <input
                 type="text"
                 id="building"
                 name="building"
                 value="{{ old('building', $user->address->building ?? '') }}"
                 class="form-input @error('building') is-invalid @enderror"
+                placeholder="建物名を入力（任意）"
             >
             @error('building')
                 <div class="error-message">{{ $message }}</div>

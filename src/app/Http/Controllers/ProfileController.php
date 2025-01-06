@@ -2,55 +2,91 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Item;
+use App\Models\Purchase;
 
 class ProfileController extends Controller
 {
+    public function showProfile()
+    {
+        $user = Auth::user();
+        $tab = request('tab', 'sell');
+
+        $items = $this->getItemsBasedOnTab($user, $tab);
+
+        return view('profile.show', compact('user', 'items', 'tab'));
+    }
+
     public function showEditForm()
     {
         $user = Auth::user();
-        return view('profile.edit', compact('user'));
+        $isFirstLogin = !$user->address()->exists();
+        return view('profile.edit', compact('user', 'isFirstLogin'));
     }
 
-    public function updateProfile(Request $request)
-    {
-        $request->validate([
-            'postal_code' => 'required|regex:/^[0-9]{3}-[0-9]{4}$/',
-            'prefecture' => 'required',
-            'city' => 'required',
-            'street' => 'required',
-            'building' => 'nullable'
-        ]);
-
-        // プロフィールと住所情報の更新処理
-        return redirect()->back()->with('success', '更新が完了しました');
-    }
-
-    public function edit()
+    public function updateProfile(AddressRequest $addressRequest, ProfileRequest $profileRequest)
     {
         $user = Auth::user();
-        return view('profile.address-edit', compact('user'));
+
+        $user->name = $addressRequest->name;
+
+        if ($profileRequest->hasFile('profile_image')) {
+            $this->updateProfileImage($user, $profileRequest->file('profile_image'));
+        }
+
+        $user->save();
+
+        $this->updateUserAddress($user, $addressRequest);
+
+        return redirect()->route('profile.show')->with('success', 'プロフィールが更新されました');
     }
 
-    public function update(Request $request)
+    public function showListings()
     {
-        $request->validate([
-            'postal_code' => 'required|regex:/^[0-9]{3}-[0-9]{4}$/',
-            'address' => 'required',
-            'building' => 'nullable'
-        ]);
-
         $user = Auth::user();
+        $listedItems = $user->items()->latest()->paginate(10);
+        return view('profile.listings', compact('listedItems'));
+    }
+
+    public function showPurchases()
+    {
+        $user = Auth::user();
+        $purchasedItems = $user->purchases()->with('item')->latest()->paginate(10);
+        return view('profile.purchases', compact('purchasedItems'));
+    }
+
+    private function getItemsBasedOnTab($user, $tab)
+    {
+        if ($tab === 'sell') {
+            return $user->items()->latest()->get();
+        } elseif ($tab === 'buy') {
+            return $user->purchases()->with('item')->latest()->get()->pluck('item');
+        }
+        return collect();
+    }
+
+    private function updateProfileImage($user, $image)
+    {
+        if ($user->profile_img_url) {
+            Storage::disk('public')->delete($user->profile_img_url);
+        }
+        $imagePath = $image->store('profile_images', 'public');
+        $user->profile_img_url = '/storage/' . $imagePath;
+    }
+
+    private function updateUserAddress($user, $addressRequest)
+    {
         $user->address()->updateOrCreate(
             ['user_id' => $user->id],
             [
-                'postal_code' => $request->postal_code,
-                'address' => $request->address,
-                'building' => $request->building
+                'postal_code' => $addressRequest->postal_code,
+                'address' => $addressRequest->address,
+                'building' => $addressRequest->building
             ]
         );
-
-        return redirect()->back()->with('success', '住所を更新しました');
     }
 }

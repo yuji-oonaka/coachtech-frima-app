@@ -8,11 +8,11 @@
 <div class="product-listing">
     <div class="tabs">
         <ul>
-            <li class="{{ !request()->routeIs('items.mylist') && $tab !== 'mylist' ? 'active' : '' }}">
-                <a href="{{ request('keyword') ? route('items.search', ['keyword' => request('keyword')]) : route('items.index') }}">おすすめ</a>
+            <li class="{{ $tab !== 'mylist' ? 'active' : '' }}">
+                <a href="{{ request('keyword') ? route('items.index', ['keyword' => request('keyword')]) : route('items.index') }}">おすすめ</a>
             </li>
-            <li class="{{ request()->routeIs('items.mylist') || $tab === 'mylist' ? 'active' : '' }}">
-                <a href="{{ request('keyword') ? route('items.search', ['keyword' => request('keyword'), 'tab' => 'mylist']) : route('items.mylist') }}">マイリスト</a>
+            <li class="{{ $tab === 'mylist' ? 'active' : '' }}">
+                <a href="{{ request('keyword') ? route('items.index', ['keyword' => request('keyword'), 'tab' => 'mylist']) : route('items.index', ['tab' => 'mylist']) }}">マイリスト</a>
             </li>
         </ul>
     </div>
@@ -24,7 +24,7 @@
     @endif
 
     <div class="product-grid">
-        @if(request()->routeIs('items.mylist'))
+        @if($tab === 'mylist')
             @auth
                 @if($items->isEmpty())
                     <p class="no-items-message">マイリストに商品が登録されていません</p>

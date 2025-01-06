@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Like;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,45 +10,24 @@ class LikeController extends Controller
 {
     public function toggleLike($itemId)
     {
-        if (!Auth::check()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'ログインが必要です'
-            ], 401);
+        $user = Auth::user();
+        $item = Item::findOrFail($itemId);
+        $isLiked = false;
+        $likeCount = 0;
+
+        if ($user->likedItems()->where('item_id', $itemId)->exists()) {
+            $user->likedItems()->detach($itemId);
+            $action = 'unliked';
+        } else {
+            $user->likedItems()->attach($itemId);
+            $action = 'liked';
         }
 
-        try {
-            $user = Auth::user();
-            $like = Like::where('user_id', $user->id)
-                    ->where('item_id', $itemId)
-                    ->first();
+        $likeCount = $item->likes()->count();
 
-            if ($like) {
-                $like->delete();
-                $action = 'unliked';
-            } else {
-                Like::create([
-                    'user_id' => $user->id,
-                    'item_id' => $itemId,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ]);
-                $action = 'liked';
-            }
-
-            $likeCount = Like::where('item_id', $itemId)->count();
-
-            return response()->json([
-                'success' => true,
-                'action' => $action,
-                'likeCount' => $likeCount
-            ]);
-        } catch (\Exception $e) {
-            \Log::error('いいね処理エラー: ' . $e->getMessage());
-            return response()->json([
-                'success' => false,
-                'message' => 'いいねの処理中にエラーが発生しました'
-            ], 500);
-        }
+        return response()->json([
+            'action' => $action,
+            'likeCount' => $likeCount
+        ]);
     }
 }

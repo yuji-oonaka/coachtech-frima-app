@@ -48,7 +48,7 @@
         </div>
 
         @auth
-            <a href="{{ route('purchase.show', $item->id) }}" class="purchase-button">
+            <a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="purchase-button">
                 購入手続きへ
             </a>
         @else
@@ -97,7 +97,7 @@
             @auth
                 <div class="comment-form">
                     <h3>商品へのコメント</h3>
-                    <form action="{{ route('comments.store') }}" method="POST" novalidate>
+                    <form action="{{ route('comments.store', ['item_id' => $item->id]) }}" method="POST" novalidate>
                         @csrf
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <div class="form-group">

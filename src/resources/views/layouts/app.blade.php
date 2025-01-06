@@ -33,7 +33,7 @@
                     <a href="{{ route('items.create') }}" class="sell-button">出品</a>
                 @else
                     <a href="{{ route('login') }}" class="nav-link">ログイン</a>
-                    <a href="{{ route('register') }}" class="nav-link">マイページ</a>
+                    <a href="{{ route('login') }}" class="nav-link">マイページ</a>
                     <a href="{{ route('login') }}" class="sell-button">出品</a>
                 @endauth
             </nav>
