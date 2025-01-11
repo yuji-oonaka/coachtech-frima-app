@@ -20,10 +20,4 @@ class Address extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    // フルアドレスを取得するアクセサ
-    public function getFullAddressAttribute()
-    {
-        return "{$this->prefecture}{$this->city}{$this->street}{$this->building}";
-    }
 }

@@ -86,7 +86,7 @@
                 @foreach($item->comments as $comment)
                     <div class="comment">
                         <div class="comment-user">
-                            <img src="{{ $comment->user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="ユーザーアイコン" class="user-avatar">
+                            <img src="{{ $comment->user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="" class="user-avatar">
                             <span class="user-name">{{ $comment->user->name }}</span>
                         </div>
                         <p class="comment-text">{{ $comment->content }}</p>

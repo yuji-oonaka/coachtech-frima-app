@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('purchases', function (Blueprint $table) {
@@ -17,19 +14,14 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
             $table->enum('payment_method', ['クレジットカード', 'コンビニ支払い']);
             $table->string('shipping_postal_code', 8);
-            $table->string('shipping_prefecture', 255);
-            $table->string('shipping_city', 255);
-            $table->string('shipping_street', 255);
-            $table->string('shipping_building', 255)->nullable();
+            $table->string('shipping_address');
+            $table->string('shipping_building')->nullable();
             $table->enum('status', ['支払い待ち', '支払い済み', '発送済み', 'キャンセル']);
             $table->timestamps();
             $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('purchases');

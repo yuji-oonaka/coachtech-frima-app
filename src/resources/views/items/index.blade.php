@@ -34,7 +34,7 @@
                         <div class="product-item">
                             <div class="product-image-wrapper">
                                 @if($item->status === '売却済み')
-                                    <div class="sold-label"></div>
+                                    <div class="sold-label">Sold</div>
                                 @endif
                                 <img src="{{ $item->img_url }}" alt="{{ $item->name }}" class="product-image">
                             </div>
@@ -56,9 +56,7 @@
                     <div class="product-item">
                         <div class="product-image-wrapper">
                             @if($item->status === '売却済み')
-                                <div class="sold-label">
-                                    Sold
-                                </div>
+                                <div class="sold-label">Sold</div>
                             @endif
                             <img src="{{ $item->img_url }}" alt="{{ $item->name }}" class="product-image">
                         </div>

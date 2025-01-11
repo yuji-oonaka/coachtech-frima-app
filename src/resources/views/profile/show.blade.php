@@ -35,7 +35,7 @@
         @forelse($items as $item)
         <a href="{{ route('items.show', $item->id) }}" class="item-card">
             <div class="item-image">
-                @if($item->status === '売却済み')
+                @if($tab === 'sell' && $item->status === '売却済み')
                     <div class="sold-label">Sold</div>
                 @endif
                 <img src="{{ $item->img_url }}" alt="{{ $item->name }}">

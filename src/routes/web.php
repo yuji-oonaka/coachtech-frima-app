@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
 
     // 商品購入画面
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchaseForm'])->name('purchase.show');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'processPurchase'])->name('purchase.process');
 
     // 送付先住所変更画面
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');

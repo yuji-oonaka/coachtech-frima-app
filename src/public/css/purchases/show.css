@@ -51,7 +51,8 @@
 }
 
 .divider {
-    width: 805px;
+    width: 100%;
+    max-width: 805px;
     height: 0;
     border: none;
     border-top: 1px solid #000000;
@@ -60,7 +61,8 @@
 
 .payment-section,
 .shipping-section {
-    width: 805px;
+    width: 100%;
+    max-width: 805px;
     margin-left: 35px;
     position: relative;
 }
@@ -104,7 +106,6 @@
 .payment-option {
     position: relative;
     padding: 8px 15px 8px 35px;
-    /* チェックマークのスペースを確保 */
     cursor: pointer;
     background: #636769;
     color: #FFFFFF;
@@ -145,7 +146,8 @@
 }
 
 .shipping-section {
-    width: 805px;
+    width: 100%;
+    max-width: 805px;
     position: relative;
     margin-bottom: 40px;
 }
@@ -154,7 +156,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 805px;
+    width: 100%;
+    max-width: 805px;
     padding-right: 65px;
 }
 
@@ -187,7 +190,8 @@
 }
 
 .confirm-surface {
-    width: 440px;
+    width: 100%;
+    max-width: 440px;
     height: 230px;
     border: 1px solid #000000;
 }
@@ -202,7 +206,7 @@
 
 .label,
 .value {
-    width: 220px;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -214,9 +218,9 @@
     line-height: 29.05px;
 }
 
-
 .purchase-button {
-    width: 440px;
+    width: 100%;
+    max-width: 440px;
     height: 60px;
     background: #FF5555;
     color: white;
@@ -228,9 +232,89 @@
 }
 
 .shipping-divider {
-    width: 805px;
+    width: 100%;
+    max-width: 805px;
     height: 0;
     border: none;
     border-top: 1px solid #000000;
     margin: 40px 0;
+}
+
+@media (max-width: 1540px) {
+    .purchase-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .purchase-left,
+    .purchase-right {
+        width: 100%;
+        max-width: 805px;
+    }
+
+    .product-summary {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image {
+        margin-bottom: 20px;
+    }
+
+    .product-details {
+        width: 100%;
+        text-align: center;
+    }
+
+    .purchase-right {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .confirm-surface {
+        width: 100%;
+        max-width: 440px;
+    }
+
+    .purchase-button {
+        width: 100%;
+        max-width: 440px;
+    }
+}
+
+@media (max-width: 850px) {
+    .product-summary {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-details {
+        width: 100%;
+        text-align: center;
+    }
+
+    .payment-section,
+    .shipping-section {
+        margin-left: 0;
+    }
+
+    .payment-select-wrapper,
+    .address-info {
+        margin-left: 0;
+        width: 100%;
+        max-width: 265px;
+        margin: 30px auto 0;
+    }
+
+    .shipping-header {
+        padding-right: 0;
+    }
+
+    .confirm-surface,
+    .purchase-button {
+        width: 100%;
+        max-width: 440px;
+    }
 }

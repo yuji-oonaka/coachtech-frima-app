@@ -16,7 +16,13 @@ class ProfileController extends Controller
         $user = Auth::user();
         $tab = request('tab', 'sell');
 
-        $items = $this->getItemsBasedOnTab($user, $tab);
+        if ($tab === 'sell') {
+            $items = $user->items()->latest()->get();
+        } elseif ($tab === 'buy') {
+            $items = $user->purchases()->with('item')->latest()->get()->pluck('item');
+        } else {
+            $items = collect();
+        }
 
         return view('profile.show', compact('user', 'items', 'tab'));
     }

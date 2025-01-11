@@ -28,13 +28,13 @@
                     <div class="selected-option">選択してください</div>
                 </div>
                 <div class="payment-options" style="display: none;">
-                    <div class="payment-option" data-value="convenience_store">
+                    <div class="payment-option" data-value="コンビニ支払い">
                         <span class="checkmark">✓</span>
-                        <span class="option-text">コンビニ払い</span>
+                        <span class="option-text">コンビニ支払い</span>
                     </div>
-                    <div class="payment-option" data-value="credit_card">
+                    <div class="payment-option" data-value="クレジットカード">
                         <span class="checkmark">✓</span>
-                        <span class="option-text">カード支払い</span>
+                        <span class="option-text">クレジットカード</span>
                     </div>
                 </div>
             </div>
@@ -47,14 +47,15 @@
                 <a href="{{ route('purchase.address.edit', ['item_id' => $item->id]) }}" class="change-address">変更する</a>
             </div>
             <div class="address-info">
-                <p class="postal-code">〒 {{ $address->postal_code ?? 'XXX-YYYY' }}</p>
-                <p class="address-text">
-                    {{ $address->address ?? '住所が登録されていません' }}
-                    @if($address->building)
-                        {{ $address->building }}
-                    @endif
-                </p>
-            </div>
+            <p class="postal-code">〒 {{ $shippingAddress['postal_code'] ?? 'XXX-YYYY' }}</p>
+            <p class="address-text">
+                {{ $shippingAddress['address'] ?? '住所が登録されていません' }}
+                @if(isset($shippingAddress['building']) && $shippingAddress['building'])
+                    {{ $shippingAddress['building'] }}
+                @endif
+            </p>
+        </div>
+
         </div>
         <hr class="shipping-divider">
     </div>
@@ -68,10 +69,14 @@
             <hr class="confirm-divider">
             <div class="payment-info">
                 <span class="label">支払い方法</span>
-                <span class="value payment-method-display">コンビニ払い</span>
+                <span class="value payment-method-display">選択してください</span>
             </div>
         </div>
-        <button type="submit" class="purchase-button">購入する</button>
+        <form action="{{ route('purchase.process', $item->id) }}" method="POST" id="purchaseForm">
+            @csrf
+            <input type="hidden" name="payment_method" id="paymentMethod" value="">
+            <button type="submit" class="purchase-button">購入する</button>
+        </form>
     </div>
 </div>
 @endsection
@@ -84,32 +89,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectedOption = document.querySelector('.selected-option');
     const options = document.querySelectorAll('.payment-option');
     const paymentMethodDisplay = document.querySelector('.payment-method-display');
+    const paymentMethodInput = document.getElementById('paymentMethod');
 
     paymentSelect.addEventListener('click', function() {
-        if (paymentOptions.style.display === 'none') {
-            paymentSelect.style.display = 'none';
-            paymentOptions.style.display = 'block';
-        }
+        paymentOptions.style.display = paymentOptions.style.display === 'none' ? 'block' : 'none';
     });
 
     options.forEach(option => {
         option.addEventListener('click', function() {
-            // すべての選択肢からselectedクラスとチェックマークの表示を解除
+            const value = this.getAttribute('data-value');
+
             options.forEach(opt => {
                 opt.classList.remove('selected');
                 opt.querySelector('.checkmark').style.display = 'none';
             });
 
-            // 選択された項目にselectedクラスを追加しチェックマークを表示
             this.classList.add('selected');
             this.querySelector('.checkmark').style.display = 'inline-block';
 
-            const value = this.querySelector('.option-text').textContent;
             selectedOption.textContent = value;
             paymentMethodDisplay.textContent = value;
+            paymentMethodInput.value = value;
 
             paymentOptions.style.display = 'none';
-            paymentSelect.style.display = 'block';
         });
     });
 
@@ -117,9 +119,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(e) {
         if (!paymentSelect.contains(e.target) && !paymentOptions.contains(e.target)) {
             paymentOptions.style.display = 'none';
-            paymentSelect.style.display = 'block';
         }
     });
 });
+
+document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+    if (!setPaymentMethod()) {
+        e.preventDefault(); // フォームの送信を中止
+    }
+});
+
+function setPaymentMethod() {
+    const displayText = document.querySelector('.payment-method-display').textContent;
+    const paymentMethodInput = document.getElementById('paymentMethod');
+    if (displayText !== '選択してください') {
+        paymentMethodInput.value = displayText;
+        return true;
+    } else {
+        alert('支払い方法を選択してください');
+        return false;
+    }
+}
 </script>
 @endsection
+

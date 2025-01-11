@@ -17,9 +17,16 @@ class ItemController extends Controller
             return $this->listMyListItems($request);
         }
 
+        $user = Auth::user();
         $query = Item::query()
-            ->whereNot('user_id', Auth::id())
-            ->where('status', '出品中');
+            ->where(function ($query) use ($user) {
+                $query->where('status', '出品中')
+                    ->where('user_id', '!=', $user ? $user->id : null)
+                    ->orWhere(function ($q) use ($user) {
+                        $q->where('status', '売却済み')
+                        ->where('user_id', '!=', $user ? $user->id : null);
+                    });
+            });
 
         $items = $query->latest()->get();
 
@@ -98,5 +105,12 @@ class ItemController extends Controller
     {
         // バリデーションと商品登録のロジックをここに実装
         // 成功したら商品詳細ページにリダイレクト
+    }
+
+    public function processPurchase($item_id)
+    {
+        $item = Item::findOrFail($item_id);
+        $item->status = 'sold';
+        $item->save();
     }
 }

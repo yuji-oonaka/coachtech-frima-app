@@ -15,17 +15,9 @@ class Purchase extends Model
         'item_id',
         'payment_method',
         'shipping_postal_code',
-        'shipping_prefecture',
-        'shipping_city',
-        'shipping_street',
+        'shipping_address',
         'shipping_building',
         'status'
-    ];
-
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime',
     ];
 
     public function user()
@@ -36,10 +28,5 @@ class Purchase extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
-    }
-
-    public function getFullShippingAddressAttribute()
-    {
-        return "{$this->shipping_prefecture}{$this->shipping_city}{$this->shipping_street}{$this->shipping_building}";
     }
 }
