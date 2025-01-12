@@ -10,6 +10,7 @@ class RegisterResponse implements RegisterResponseContract
 {
     public function toResponse($request)
     {
-        return redirect()->route('profile.edit');
+        return redirect()->route('profile.edit')
+        ->with('success', 'ユーザー登録しました');
     }
 }

@@ -87,6 +87,41 @@
     opacity: 0.8;
 }
 
+.success-message {
+    position: fixed;
+    top: 102px;
+    /* ヘッダーの高さ(82px) + 余白(20px) */
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 4px;
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
 @media (max-width: 1540px) {
     .header-logo {
         width: 300px;

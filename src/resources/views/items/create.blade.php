@@ -6,11 +6,19 @@
 
 @section('content')
 <div class="create-container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h1 class="page-title">商品の出品</h1>
 
     <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <!-- 商品画像エリア -->
         <div class="exhibited-products-image">
             <label class="section-title">商品画像</label>
@@ -91,18 +99,22 @@ document.getElementById('itemImage').addEventListener('change', function(e) {
             const preview = document.getElementById('preview');
             preview.src = e.target.result;
             preview.classList.remove('hidden');
+            document.querySelector('.select-image-button').classList.add('hidden');
         }
         reader.readAsDataURL(file);
     }
 });
 document.querySelectorAll('.category-item').forEach(item => {
-    item.addEventListener('click', function(e) {
-        const checkbox = this.querySelector('input[type="checkbox"]');
+    item.addEventListener('click', function() {
         this.classList.toggle('selected');
-        checkbox.checked = !checkbox.checked;
-        e.preventDefault();
+        // 選択されたカテゴリーのIDを収集
+        const selectedCategories = [];
+        document.querySelectorAll('.category-item.selected').forEach(selected => {
+            selectedCategories.push(selected.dataset.categoryId);
+        });
+        // hidden inputに選択されたカテゴリーIDをカンマ区切りで設定
+        document.getElementById('selectedCategory').value = selectedCategories.join(',');
     });
 });
-
 </script>
 @endsection

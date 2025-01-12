@@ -8,6 +8,7 @@ class LogoutResponse implements LogoutResponseContract
 {
     public function toResponse($request)
     {
-        return redirect()->route('login');
+        return redirect()->route('login')
+        ->with('success', 'ログアウトしました');
     }
 }

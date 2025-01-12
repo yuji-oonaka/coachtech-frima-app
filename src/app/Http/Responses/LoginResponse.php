@@ -8,6 +8,7 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        return redirect()->route('items.index');
+        return redirect()->route('items.index')
+        ->with('success', 'ログインしました');
     }
 }

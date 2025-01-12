@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -103,8 +104,34 @@ class ItemController extends Controller
 
     public function createListing(Request $request)
     {
-        // バリデーションと商品登録のロジックをここに実装
-        // 成功したら商品詳細ページにリダイレクト
+        $validatedData = $request->validate([
+            'item_image' => 'required|image|mimes:jpeg,png|max:2048',
+            'selected_category' => 'required',
+            'condition' => 'required|in:新品,未使用,目立った傷や汚れなし,傷や汚れあり,全体的に状態が悪い',
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+        ]);
+
+        // 画像の保存
+        $imagePath = $request->file('item_image')->store('item_images', 'public');
+
+        // 商品の保存
+        $item = Item::create([
+            'user_id' => Auth::id(),
+            'name' => $validatedData['name'],
+            'img_url' => '/storage/' . $imagePath,
+            'description' => $validatedData['description'],
+            'price' => $validatedData['price'],
+            'condition' => $validatedData['condition'],
+            'status' => '出品中',
+        ]);
+
+        // カテゴリーの保存
+        $categoryIds = explode(',', $validatedData['selected_category']);
+        $item->categories()->attach($categoryIds);
+
+        return redirect()->route('items.show', $item->id)->with('success', '商品を出品しました');
     }
 
     public function processPurchase($item_id)

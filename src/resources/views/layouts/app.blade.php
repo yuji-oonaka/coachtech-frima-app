@@ -43,8 +43,23 @@
     </header>
 
     <main>
+        @if (session('success'))
+        <div class="success-message" id="successMessage">
+            {{ session('success') }}
+        </div>
+        @endif
         @yield('content')
         @yield('scripts')
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                setTimeout(() => {
+                    successMessage.remove();
+                }, 3000);
+            }
+        });
+        </script>
     </main>
 
     <footer>
