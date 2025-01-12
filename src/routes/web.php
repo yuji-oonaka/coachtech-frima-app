@@ -16,18 +16,15 @@ Route::get('/item/search', [ItemController::class, 'searchItems'])->name('items.
 // 商品詳細画面
 Route::get('/item/{item_id}', [ItemController::class, 'displayItemDetails'])->name('items.show');
 
-
 // 認証が必要なルート
 Route::middleware(['auth'])->group(function () {
-    // 商品一覧画面（トップ画面）_マイリスト
+    // 送付先住所変更画面
+    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
 
     // 商品購入画面
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchaseForm'])->name('purchase.show');
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'processPurchase'])->name('purchase.process');
-
-    // 送付先住所変更画面
-    Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
-    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
 
     // 商品出品画面
     Route::get('/sell', [ItemController::class, 'showSellForm'])->name('items.create');

@@ -7,6 +7,8 @@ use App\Models\Purchase;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\AddressRequest;
+
 
 class PurchaseController extends Controller
 {
@@ -18,11 +20,16 @@ class PurchaseController extends Controller
 
         if (!$shippingAddress) {
             $address = $user->address;
-            $shippingAddress = [
-                'postal_code' => $address->postal_code,
-                'address' => $address->address,
-                'building' => $address->building
-            ];
+            if ($address) {
+                $shippingAddress = [
+                    'postal_code' => $address->postal_code,
+                    'address' => $address->address,
+                    'building' => $address->building ?? null
+                ];
+            } else {
+                // ユーザーがアドレスを設定していない場合
+                return redirect()->route('profile.edit')->with('error', 'プロフィールの設定が必要です。');
+            }
             session(['shipping_address' => $shippingAddress]);
         }
 
@@ -37,7 +44,7 @@ class PurchaseController extends Controller
         return view('purchases.address-edit', compact('item', 'user', 'address'));
     }
 
-    public function updateAddress(Request $request, $item_id)
+    public function updateAddress(AddressRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
         $user = Auth::user();

@@ -117,3 +117,119 @@
     font-weight: bold;
     margin-top: 5px;
 }
+
+@media (max-width: 1540px) and (min-width: 1400px) {
+    .profile-container {
+        padding: 20px 10px;
+    }
+
+    .user-info {
+        width: auto;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .user-name {
+        width: auto;
+        font-size: 28px;
+    }
+
+    .edit-profile {
+        width: 250px;
+        height: 50px;
+        font-size: 16px;
+        margin-left: 0;
+    }
+
+    .item-tabs {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .items-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .item-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-image {
+        max-width: 200px;
+        margin: 0 auto 10px;
+    }
+
+    .item-name,
+    .item-price {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 850px) and (min-width: 768px) {
+    .profile-container {
+        padding: 10px 5px;
+    }
+
+    .user-info {
+        width: auto;
+        height: auto;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .user-name {
+        width: auto;
+        font-size: 24px;
+    }
+
+    .edit-profile {
+        width: 200px;
+        height: 40px;
+        font-size: 14px;
+        margin-left: 0;
+    }
+
+    .item-tabs {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .items-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .item-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-image {
+        max-width: 150px;
+        margin: 0 auto 8px;
+    }
+
+    .item-name,
+    .item-price {
+        width: 100%;
+        text-align: center;
+    }
+}

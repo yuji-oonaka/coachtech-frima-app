@@ -89,3 +89,117 @@
 .hidden {
     display: none;
 }
+
+.error-message {
+    color: #FF0000;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+@media (max-width: 1540px) and (min-width: 1400px) {
+    .profile-edit-container {
+        padding: 20px 10px;
+    }
+
+    .page-title {
+        width: auto;
+        font-size: 30px;
+        line-height: 36px;
+        text-align: center;
+    }
+
+    .profile-image-section {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+        margin-left: 0;
+    }
+
+    .select-image-button {
+        width: 160px;
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .form-group {
+        width: 90%;
+        max-width: 580px;
+    }
+
+    .form-group label {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .form-group input {
+        height: 50px;
+    }
+
+    .update-button {
+        width: 90%;
+        max-width: 580px;
+        height: 55px;
+        font-size: 22px;
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 850px) and (min-width: 768px) {
+    .profile-edit-container {
+        padding: 15px 10px;
+    }
+
+    .page-title {
+        width: auto;
+        font-size: 26px;
+        line-height: 32px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .profile-image-section {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        margin-left: 0;
+    }
+
+    .select-image-button {
+        width: 150px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .form-group {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .form-group label {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .form-group input {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .update-button {
+        width: 90%;
+        max-width: 500px;
+        height: 50px;
+        font-size: 20px;
+        margin: 25px auto;
+    }
+}

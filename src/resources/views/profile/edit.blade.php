@@ -8,12 +8,12 @@
 <div class="profile-edit-container">
     <h1 class="page-title">プロフィール設定</h1>
 
-    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
         @method('PUT')
         <div class="profile-image-section">
             <div class="profile-image">
-                <img id="preview" src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="プロフィール画像">
+                <img id="preview" src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="">
             </div>
             <div class="image-upload">
                 <input type="file" name="profile_image" id="profileImage" accept="image/*" class="hidden">

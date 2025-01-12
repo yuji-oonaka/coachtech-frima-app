@@ -8,7 +8,7 @@
 <div class="profile-container">
     <div class="user-info">
         <div class="profile-image">
-            <img src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="{{ $user->name }}">
+            <img src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="">
         </div>
         <h1 class="user-name">{{ $user->name }}</h1>
         <a href="{{ route('profile.edit') }}" class="edit-profile">プロフィールを編集</a>

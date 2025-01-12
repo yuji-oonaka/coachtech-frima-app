@@ -6,8 +6,11 @@ use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Purchase;
+use App\Models\Address;
 
 class ProfileController extends Controller
 {
@@ -34,19 +37,30 @@ class ProfileController extends Controller
         return view('profile.edit', compact('user', 'isFirstLogin'));
     }
 
-    public function updateProfile(AddressRequest $addressRequest, ProfileRequest $profileRequest)
+    public function updateProfile(Request $request)
     {
         $user = Auth::user();
 
-        $user->name = $addressRequest->name;
+        $profileValidator = Validator::make($request->all(), (new ProfileRequest())->rules(), (new ProfileRequest())->messages());
+        $addressValidator = Validator::make($request->all(), (new AddressRequest())->rules(), (new AddressRequest())->messages());
 
-        if ($profileRequest->hasFile('profile_image')) {
-            $this->updateProfileImage($user, $profileRequest->file('profile_image'));
+        $errors = $profileValidator->errors()->merge($addressValidator->errors());
+
+        if ($errors->isNotEmpty()) {
+            return redirect()->back()
+                ->withErrors($errors)
+                ->withInput();
+        }
+
+        $user->name = $request->name;
+
+        if ($request->hasFile('profile_image')) {
+            $this->updateProfileImage($user, $request->file('profile_image'));
         }
 
         $user->save();
 
-        $this->updateUserAddress($user, $addressRequest);
+        $this->updateUserAddress($user, $request);
 
         return redirect()->route('profile.show')->with('success', 'プロフィールが更新されました');
     }

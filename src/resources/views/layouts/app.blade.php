@@ -15,6 +15,7 @@
             <a href="{{ route('items.index') }}" class="logo-wrapper">
                 <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH" class="header-logo">
             </a>
+            @if(!$hideNavigation)
             <div class="search-wrapper">
                 <form action="{{ route('items.search') }}" method="GET" class="search-form">
                     <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
@@ -37,8 +38,10 @@
                     <a href="{{ route('login') }}" class="sell-button">出品</a>
                 @endauth
             </nav>
+            @endif
         </div>
     </header>
+
     <main>
         @yield('content')
         @yield('scripts')
