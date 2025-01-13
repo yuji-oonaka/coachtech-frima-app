@@ -48,9 +48,15 @@
         </div>
 
         @auth
-            <a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="purchase-button">
-                購入手続きへ
-            </a>
+            @if($item->status === '売却済み')
+                <button class="purchase-button disabled" disabled>
+                    売り切れました
+                </button>
+            @else
+                <a href="{{ route('purchase.show', ['item_id' => $item->id]) }}" class="purchase-button">
+                    購入手続きへ
+                </a>
+            @endif
         @else
             <button class="purchase-button disabled" disabled>
                 購入手続きへ

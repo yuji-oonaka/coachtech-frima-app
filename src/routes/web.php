@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
     // 商品購入画面
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchaseForm'])->name('purchase.show');
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'processPurchase'])->name('purchase.process');
+    Route::get('/purchase/success/{item_id}', [PurchaseController::class, 'handleStripeSuccess'])
+    ->name('purchase.success');
 
     // 商品出品画面
     Route::get('/sell', [ItemController::class, 'showSellForm'])->name('items.create');
