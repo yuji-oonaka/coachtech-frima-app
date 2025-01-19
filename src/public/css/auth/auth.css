@@ -140,6 +140,52 @@
     color: #333333;
 }
 
+/* メール認証画面のスタイル */
+.verify-email-container {
+    width: 680px;
+    padding: 40px;
+    margin: 60px auto;
+    background: #FFFFFF;
+}
+
+.verify-email-container h1 {
+    font-family: Inter, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.verify-email-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #666666;
+    text-align: center;
+}
+
+.verify-email-container form {
+    text-align: center;
+}
+
+.verify-email-container button {
+    width: 200px;
+    background: #FF5555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.verify-email-container button:hover {
+    opacity: 0.8;
+}
+
 /* PC (1400-1540px) */
 @media screen and (max-width: 1540px) and (min-width: 1400px) {
     .auth-content {
@@ -156,6 +202,11 @@
     .register-button,
     .login-button {
         width: 100%;
+    }
+
+    .verify-email-container {
+        width: 80%;
+        max-width: 680px;
     }
 }
 
@@ -199,5 +250,15 @@
     .login-link,
     .register-link {
         width: 100%;
+    }
+
+    .verify-email-container {
+        width: 90%;
+        padding: 30px;
+        margin: 40px auto;
+    }
+
+    .verify-email-container h1 {
+        font-size: 24px;
     }
 }

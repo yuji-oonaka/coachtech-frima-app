@@ -5,25 +5,25 @@
     padding: 0 20px;
 }
 
-.tabs {
+.product-listing__tabs {
     width: 100%;
     height: 47px;
     margin-top: 45px;
     border-bottom: 1px solid #DDDDDD;
 }
 
-.tabs ul {
+.product-listing__tab-list {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-.tabs li {
+.product-listing__tab-item {
     margin-right: 40px;
 }
 
-.tabs a {
+.product-listing__tab-link {
     display: block;
     padding: 10px 0;
     color: #000000;
@@ -32,11 +32,11 @@
     position: relative;
 }
 
-.tabs .active a {
+.product-listing__tab-item--active .product-listing__tab-link {
     color: #FF0000;
 }
 
-.tabs .active a::after {
+.product-listing__tab-item--active .product-listing__tab-link::after {
     content: '';
     position: absolute;
     bottom: -1px;
@@ -46,7 +46,7 @@
     background-color: #FF0000;
 }
 
-.product-grid {
+.product-listing__grid {
     width: 91%;
     margin: 40px auto;
     display: grid;
@@ -55,22 +55,22 @@
     justify-content: center;
 }
 
-.product-item {
+.product-listing__item {
     width: 290px;
 }
 
-.product-item-link {
+.product-listing__item-link {
     text-decoration: none;
     color: inherit;
     display: block;
 }
 
-.product-item-link:hover {
+.product-listing__item-link:hover {
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }
 
-.product-image-wrapper {
+.product-listing__image-wrapper {
     position: relative;
     width: 290px;
     height: 290px;
@@ -78,13 +78,13 @@
     overflow: hidden;
 }
 
-.product-image {
+.product-listing__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.sold-label {
+.product-listing__sold-label {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -95,13 +95,13 @@
     border-radius: 4px;
 }
 
-.product-name {
+.product-listing__name {
     margin-top: 10px;
     font-size: 16px;
     line-height: 1.4;
 }
 
-.no-items-message {
+.product-listing__no-items {
     width: 100%;
     text-align: center;
     padding: 40px 0;
@@ -111,7 +111,7 @@
 }
 
 @media (max-width: 1540px) and (min-width: 1400px) {
-    .product-grid {
+    .product-listing__grid {
         width: 95%;
         gap: 30px;
     }
@@ -122,16 +122,16 @@
         padding: 0 10px;
     }
 
-    .product-grid {
+    .product-listing__grid {
         width: 98%;
         gap: 20px;
     }
 
-    .product-item {
+    .product-listing__item {
         width: 240px;
     }
 
-    .product-image-wrapper {
+    .product-listing__image-wrapper {
         width: 240px;
         height: 240px;
     }

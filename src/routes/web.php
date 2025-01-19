@@ -17,7 +17,7 @@ Route::get('/item/search', [ItemController::class, 'searchItems'])->name('items.
 Route::get('/item/{item_id}', [ItemController::class, 'displayItemDetails'])->name('items.show');
 
 // 認証が必要なルート
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // 送付先住所変更画面
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
     Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');

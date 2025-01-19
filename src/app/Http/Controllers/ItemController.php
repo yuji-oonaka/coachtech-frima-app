@@ -99,7 +99,8 @@ class ItemController extends Controller
     public function showSellForm()
     {
         $categories = Category::all();
-        return view('items.create', compact('categories'));
+        $conditions = Item::getEnumValues('condition');
+        return view('items.create', compact('categories', 'conditions'));
     }
 
     public function createListing(Request $request)

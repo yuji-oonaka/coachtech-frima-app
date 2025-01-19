@@ -5,9 +5,9 @@
 @endsection
 
 @section('content')
-<div class="create-container">
+<div class="create-product">
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="create-product__alert create-product__alert--danger">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -15,30 +15,28 @@
             </ul>
         </div>
     @endif
-    <h1 class="page-title">商品の出品</h1>
+    <h1 class="create-product__title">商品の出品</h1>
 
-    <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="create-product__form">
         @csrf
-        <!-- 商品画像エリア -->
-        <div class="exhibited-products-image">
-            <label class="section-title">商品画像</label>
-            <div class="image-upload-area">
-                <input type="file" name="item_image" id="itemImage" accept="image/*" class="hidden">
-                <label for="itemImage" class="select-image-button">画像を選択する</label>
-                <img id="preview" src="" class="hidden">
+        <div class="create-product__image-section">
+            <label class="create-product__section-title">商品画像</label>
+            <div class="create-product__image-upload">
+                <input type="file" name="item_image" id="itemImage" accept="image/*" class="create-product__image-input">
+                <label for="itemImage" class="create-product__image-button">画像を選択する</label>
+                <img id="preview" src="" class="create-product__image-preview create-product__image-preview--hidden">
             </div>
         </div>
 
-        <div class="product-details-divider">
-            <h2 class="product-details-title"> 商品の詳細</h2>
+        <div class="create-product__divider">
+            <h2 class="create-product__divider-title">商品の詳細</h2>
         </div>
 
-        <!-- カテゴリーエリア -->
-        <div class="exhibited-product-category-area">
-            <label class="section-title">カテゴリー</label>
-            <div class="category-items">
+        <div class="create-product__category-section">
+            <label class="create-product__section-title">カテゴリー</label>
+            <div class="create-product__category-list">
                 @foreach($categories as $category)
-                    <label class="category-item" data-category-id="{{ $category->id }}">
+                    <label class="create-product__category-item" data-category-id="{{ $category->id }}">
                         {{ $category->name }}
                     </label>
                 @endforeach
@@ -46,45 +44,39 @@
             <input type="hidden" name="selected_category" id="selectedCategory">
         </div>
 
-        <!-- 商品の状態 -->
-        <div class="exhibited-product-status">
-            <label class="section-title">商品の状態</label>
-            <select name="condition" required>
+        <div class="create-product__condition-section">
+            <label class="create-product__section-title">商品の状態</label>
+            <select name="condition" required class="create-product__select">
                 <option value="" disabled selected>選択してください</option>
-                <option value="新品">新品</option>
-                <option value="未使用">未使用</option>
-                <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
-                <option value="傷や汚れあり">傷や汚れあり</option>
-                <option value="全体的に状態が悪い">全体的に状態が悪い</option>
+                @foreach($conditions as $condition)
+                    <option value="{{ $condition }}">{{ $condition }}</option>
+                @endforeach
             </select>
         </div>
 
-        <div class="product-details-divider">
-            <h2 class="product-details-title">商品名と説明</h2>
+        <div class="create-product__divider">
+            <h2 class="create-product__divider-title">商品名と説明</h2>
         </div>
 
-        <!-- 商品名 -->
-        <div class="product-name">
-            <label class="section-title">商品名</label>
-            <input type="text" name="name" required>
+        <div class="create-product__name-section">
+            <label class="create-product__section-title">商品名</label>
+            <input type="text" name="name" required class="create-product__input">
         </div>
 
-        <!-- 商品の説明 -->
-        <div class="product-description">
-            <label class="section-title">商品の説明</label>
-            <textarea name="description" required></textarea>
+        <div class="create-product__description-section">
+            <label class="create-product__section-title">商品の説明</label>
+            <textarea name="description" required class="create-product__textarea"></textarea>
         </div>
 
-        <!-- 販売価格 -->
-        <div class="product-price">
-            <label class="section-title">販売価格</label>
-            <div class="price-input">
-                <span class="currency">￥</span>
-                <input type="number" name="price" required min="0">
+        <div class="create-product__price-section">
+            <label class="create-product__section-title">販売価格</label>
+            <div class="create-product__price-input">
+                <span class="create-product__currency">￥</span>
+                <input type="number" name="price" required min="0" class="create-product__input">
             </div>
         </div>
 
-        <button type="submit" class="submit-button">出品する</button>
+        <button type="submit" class="create-product__submit">出品する</button>
     </form>
 </div>
 @endsection
@@ -98,21 +90,19 @@ document.getElementById('itemImage').addEventListener('change', function(e) {
         reader.onload = function(e) {
             const preview = document.getElementById('preview');
             preview.src = e.target.result;
-            preview.classList.remove('hidden');
-            document.querySelector('.select-image-button').classList.add('hidden');
+            preview.classList.remove('create-product__image-preview--hidden');
+            document.querySelector('.create-product__image-button').classList.add('create-product__image-button--hidden');
         }
         reader.readAsDataURL(file);
     }
 });
-document.querySelectorAll('.category-item').forEach(item => {
+document.querySelectorAll('.create-product__category-item').forEach(item => {
     item.addEventListener('click', function() {
-        this.classList.toggle('selected');
-        // 選択されたカテゴリーのIDを収集
+        this.classList.toggle('create-product__category-item--selected');
         const selectedCategories = [];
-        document.querySelectorAll('.category-item.selected').forEach(selected => {
+        document.querySelectorAll('.create-product__category-item--selected').forEach(selected => {
             selectedCategories.push(selected.dataset.categoryId);
         });
-        // hidden inputに選択されたカテゴリーIDをカンマ区切りで設定
         document.getElementById('selectedCategory').value = selectedCategories.join(',');
     });
 });

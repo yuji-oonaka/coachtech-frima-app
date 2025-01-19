@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Item extends Model
 {
@@ -56,5 +57,30 @@ class Item extends Model
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
+    }
+
+    public static function getEnumValues($column)
+    {
+        $instance = new static;
+        $table = $instance->getTable();
+
+        $columnInfo = DB::select("SHOW COLUMNS FROM `{$table}` WHERE Field = ?", [$column]);
+
+        if (empty($columnInfo)) {
+            return [];
+        }
+
+        $type = $columnInfo[0]->Type;
+        preg_match('/^enum\((.*)\)$/', $type, $matches);
+
+        if (empty($matches)) {
+            return [];
+        }
+
+        $enum = array_map(function($value) {
+            return trim($value, "'");
+        }, explode(',', $matches[1]));
+
+        return $enum;
     }
 }

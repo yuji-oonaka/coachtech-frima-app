@@ -20,6 +20,11 @@ class PurchaseController extends Controller
         $user = Auth::user();
         $shippingAddress = session('shipping_address');
 
+        if ($item->user_id === Auth::id()) {
+        return redirect()->route('items.show', $item_id)
+            ->with('error', '自分が出品した商品は購入できません');
+    }
+
         if (!$shippingAddress) {
             $address = $user->address;
             if ($address) {
