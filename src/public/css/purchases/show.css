@@ -183,6 +183,7 @@
     font-size: 20px;
     font-weight: 600;
     line-height: 24.2px;
+    white-space: nowrap;
 }
 
 .purchase-right {

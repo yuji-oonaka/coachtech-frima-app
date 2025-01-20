@@ -11,6 +11,7 @@
     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" novalidate>
         @csrf
         @method('PUT')
+        <input type="hidden" name="prefix" value="">
         <div class="profile-image-section">
             <div class="profile-image">
                 <img id="preview" src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="">

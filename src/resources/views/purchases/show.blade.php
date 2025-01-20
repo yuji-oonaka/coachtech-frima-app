@@ -44,18 +44,17 @@
         <div class="shipping-section">
             <div class="shipping-header">
                 <h2>配送先</h2>
-                <a href="{{ route('purchase.address.update', ['item_id' => $item->id]) }}" class="change-address">変更する</a>
+                <a href="{{ route('purchase.address.edit', ['item_id' => $item->id]) }}" class="change-address">変更する</a>
             </div>
             <div class="address-info">
-            <p class="postal-code">〒 {{ $shippingAddress['postal_code'] ?? 'XXX-YYYY' }}</p>
-            <p class="address-text">
-                {{ $shippingAddress['address'] ?? '住所が登録されていません' }}
-                @if(isset($shippingAddress['building']) && $shippingAddress['building'])
-                    {{ $shippingAddress['building'] }}
-                @endif
-            </p>
-        </div>
-
+                <p class="postal-code">〒 {{ $shippingAddress['postal_code'] ?? 'XXX-YYYY' }}</p>
+                <p class="address-text">
+                    {{ $shippingAddress['address'] ?? '住所が登録されていません' }}
+                    @if(isset($shippingAddress['building']) && $shippingAddress['building'])
+                        {{ $shippingAddress['building'] }}
+                    @endif
+                </p>
+            </div>
         </div>
         <hr class="shipping-divider">
     </div>
