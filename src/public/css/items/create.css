@@ -59,7 +59,7 @@
     width: 680px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     margin-bottom: 30px;
 }
 
@@ -208,4 +208,127 @@
     color: #c62828;
     font-size: 14px;
     margin-top: 5px;
+}
+
+.condition-select-wrapper {
+    position: relative;
+    width: 680px;
+    margin-top: 30px;
+}
+
+.condition-select {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    padding: 0 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FFFFFF;
+}
+
+.select-arrow {
+    color: #5F5F5F;
+    font-size: 16px;
+}
+
+.condition-options {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 1.5px solid #818181;
+    border-radius: 4px;
+    background: #FFFFFF;
+    z-index: 1000;
+}
+
+.selected-option {
+    color: #5F5F5F;;
+}
+
+.condition-option {
+    position: relative;
+    padding: 8px 15px 8px 35px;
+    cursor: pointer;
+    background: #636769;
+    color: #EAEAEA;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.condition-option:hover {
+    background: #5599EB;
+}
+
+.condition-option .checkmark {
+    position: absolute;
+    left: 15px;
+    display: none;
+}
+
+.condition-option.selected .checkmark {
+    display: inline-block;
+}
+
+/* タブレット用スタイル (768-850px) */
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+    .create-product {
+        padding: 30px 15px;
+    }
+
+    .create-product__image-section,
+    .create-product__image-upload,
+    .create-product__category-list,
+    .create-product__select,
+    .create-product__name-section,
+    .create-product__description-section,
+    .create-product__price-section,
+    .create-product__input,
+    .create-product__textarea,
+    .create-product__submit,
+    .create-product__divider,
+    .create-product__alert {
+        width: 100%;
+        max-width: 680px;
+    }
+
+    .create-product__title {
+        font-size: 32px;
+    }
+
+    .create-product__section-title {
+        font-size: 22px;
+    }
+
+    .create-product__category-item {
+        font-size: 14px;
+    }
+}
+
+/* PC用スタイル (1400-1540px) */
+@media only screen and (min-width: 1400px) and (max-width: 1540px) {
+    .create-product {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .create-product__image-section,
+    .create-product__image-upload,
+    .create-product__category-list,
+    .create-product__select,
+    .create-product__name-section,
+    .create-product__description-section,
+    .create-product__price-section,
+    .create-product__input,
+    .create-product__textarea,
+    .create-product__submit,
+    .create-product__divider,
+    .create-product__alert {
+        width: 800px;
+    }
 }

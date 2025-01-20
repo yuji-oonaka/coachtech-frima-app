@@ -45,7 +45,7 @@
                     @endforeach
                 @endif
             @else
-                <p class="product-listing__no-items">マイリストを利用するにはログインが必要です</p>
+                <p class="product-listing__no-items"></p>
             @endauth
         @else
             @if($items->isEmpty())

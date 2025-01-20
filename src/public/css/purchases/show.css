@@ -108,14 +108,14 @@
     padding: 8px 15px 8px 35px;
     cursor: pointer;
     background: #636769;
-    color: #FFFFFF;
+    color: #EAEAEA;
     height: 31px;
     display: flex;
     align-items: center;
 }
 
 .payment-option:hover {
-    background: #4A90E2;
+    background: #5599EB;
 }
 
 .checkmark {

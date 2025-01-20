@@ -46,12 +46,21 @@
 
         <div class="create-product__condition-section">
             <label class="create-product__section-title">商品の状態</label>
-            <select name="condition" required class="create-product__select">
-                <option value="" disabled selected>選択してください</option>
-                @foreach($conditions as $condition)
-                    <option value="{{ $condition }}">{{ $condition }}</option>
-                @endforeach
-            </select>
+            <div class="condition-select-wrapper">
+                <div class="condition-select" id="conditionSelect">
+                    <div class="selected-option">選択してください</div>
+                    <div class="select-arrow">▼</div>
+                </div>
+                <div class="condition-options" style="display: none;">
+                    @foreach($conditions as $condition)
+                        <div class="condition-option" data-value="{{ $condition }}">
+                            <span class="checkmark">✓</span>
+                            <span class="option-text">{{ $condition }}</span>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <input type="hidden" name="condition" id="conditionInput" value="">
         </div>
 
         <div class="create-product__divider">
@@ -104,6 +113,43 @@ document.querySelectorAll('.create-product__category-item').forEach(item => {
             selectedCategories.push(selected.dataset.categoryId);
         });
         document.getElementById('selectedCategory').value = selectedCategories.join(',');
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const conditionSelect = document.getElementById('conditionSelect');
+    const conditionOptions = document.querySelector('.condition-options');
+    const selectedOption = conditionSelect.querySelector('.selected-option');
+    const options = document.querySelectorAll('.condition-option');
+    const conditionInput = document.getElementById('conditionInput');
+
+    conditionSelect.addEventListener('click', function() {
+        conditionOptions.style.display = conditionOptions.style.display === 'none' ? 'block' : 'none';
+    });
+
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+
+            options.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.querySelector('.checkmark').style.display = 'none';
+            });
+
+            this.classList.add('selected');
+            this.querySelector('.checkmark').style.display = 'inline-block';
+
+            selectedOption.textContent = value;
+            conditionInput.value = value;
+
+            conditionOptions.style.display = 'none';
+        });
+    });
+
+    // クリック外での閉じる処理
+    document.addEventListener('click', function(e) {
+        if (!conditionSelect.contains(e.target) && !conditionOptions.contains(e.target)) {
+            conditionOptions.style.display = 'none';
+        }
     });
 });
 </script>
