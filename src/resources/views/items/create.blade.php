@@ -6,26 +6,20 @@
 
 @section('content')
 <div class="create-product">
-    @if ($errors->any())
-        <div class="create-product__alert create-product__alert--danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <h1 class="create-product__title">商品の出品</h1>
 
-    <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="create-product__form">
+    <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="create-product__form" novalidate>
         @csrf
         <div class="create-product__image-section">
             <label class="create-product__section-title">商品画像</label>
             <div class="create-product__image-upload">
-                <input type="file" name="item_image" id="itemImage" accept="image/*" class="create-product__image-input">
+                <input type="file" name="item_image" id="itemImage" accept="image/jpeg,image/png" class="create-product__image-input" required>
                 <label for="itemImage" class="create-product__image-button">画像を選択する</label>
                 <img id="preview" src="" class="create-product__image-preview create-product__image-preview--hidden">
             </div>
+            @error('item_image')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="create-product__divider">
@@ -41,7 +35,10 @@
                     </label>
                 @endforeach
             </div>
-            <input type="hidden" name="selected_category" id="selectedCategory">
+            <input type="hidden" name="selected_category" id="selectedCategory" required>
+            @error('selected_category')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="create-product__condition-section">
@@ -60,7 +57,10 @@
                     @endforeach
                 </div>
             </div>
-            <input type="hidden" name="condition" id="conditionInput" value="">
+            <input type="hidden" name="condition" id="conditionInput" value="" required>
+            @error('condition')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="create-product__divider">
@@ -69,20 +69,29 @@
 
         <div class="create-product__name-section">
             <label class="create-product__section-title">商品名</label>
-            <input type="text" name="name" required class="create-product__input">
+            <input type="text" name="name" required class="create-product__input" value="{{ old('name') }}" maxlength="255">
+            @error('name')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="create-product__description-section">
             <label class="create-product__section-title">商品の説明</label>
-            <textarea name="description" required class="create-product__textarea"></textarea>
+            <textarea name="description" required class="create-product__textarea" maxlength="255">{{ old('description') }}</textarea>
+            @error('description')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="create-product__price-section">
             <label class="create-product__section-title">販売価格</label>
             <div class="create-product__price-input">
                 <span class="create-product__currency">￥</span>
-                <input type="number" name="price" required min="0" class="create-product__input">
+                <input type="number" name="price" required min="0" class="create-product__input" value="{{ old('price') }}">
             </div>
+            @error('price')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
 
         <button type="submit" class="create-product__submit">出品する</button>

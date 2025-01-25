@@ -10,6 +10,7 @@ use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddressRequest;
+use App\Http\Requests\PurchaseRequest;
 
 class PurchaseController extends Controller
 {
@@ -57,7 +58,7 @@ class PurchaseController extends Controller
         return redirect()->route('purchase.show', $item_id)->with('success', '送付先住所を更新しました');
     }
 
-    public function processPurchase(Request $request, $item_id)
+    public function processPurchase(PurchaseRequest $request, $item_id)
     {
         $item = Item::findOrFail($item_id);
         $user = Auth::user();

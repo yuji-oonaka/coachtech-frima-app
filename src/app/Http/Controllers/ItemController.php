@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Item;
 use App\Models\Category;
 
@@ -103,16 +104,9 @@ class ItemController extends Controller
         return view('items.create', compact('categories', 'conditions'));
     }
 
-    public function createListing(Request $request)
+    public function createListing(ExhibitionRequest $request)
     {
-        $validatedData = $request->validate([
-            'item_image' => 'required|image|mimes:jpeg,png|max:2048',
-            'selected_category' => 'required',
-            'condition' => 'required|in:新品,未使用,目立った傷や汚れなし,傷や汚れあり,全体的に状態が悪い',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-        ]);
+        $validatedData = $request->validated();
 
         // 画像の保存
         $imagePath = $request->file('item_image')->store('item_images', 'public');

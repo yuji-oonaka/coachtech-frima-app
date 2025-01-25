@@ -26,6 +26,7 @@
             <div class="payment-select-wrapper">
                 <div class="payment-select" id="paymentSelect">
                     <div class="selected-option">選択してください</div>
+                    <div class="select-arrow">▼</div>
                 </div>
                 <div class="payment-options" style="display: none;">
                     <div class="payment-option" data-value="コンビニ支払い">
@@ -38,7 +39,11 @@
                     </div>
                 </div>
             </div>
+            @error('payment_method')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
+
         <hr class="divider">
 
         <div class="shipping-section">
@@ -55,7 +60,14 @@
                     @endif
                 </p>
             </div>
+            @error('shipping_postal_code')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
+            @error('shipping_address')
+                <span class="create-product__error">{{ $message }}</span>
+            @enderror
         </div>
+
         <hr class="shipping-divider">
     </div>
 
@@ -71,17 +83,36 @@
                 <span class="value payment-method-display">選択してください</span>
             </div>
         </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('purchase.process', $item->id) }}" method="POST" id="purchaseForm">
             @csrf
+            <!-- 隠しフィールドで配送先情報を送信 -->
             <input type="hidden" name="payment_method" id="paymentMethod" value="">
+            <input type="hidden" name="shipping_postal_code" value="{{ $shippingAddress['postal_code'] }}">
+            <input type="hidden" name="shipping_address" value="{{ $shippingAddress['address'] }}">
+            <input type="hidden" name="shipping_building" value="{{ $shippingAddress['building'] ?? '' }}">
+
+            <!-- 購入ボタン -->
             <button type="submit" class="purchase-button">購入する</button>
         </form>
     </div>
 </div>
+
 @endsection
 
 @section('scripts')
 <script>
+// JavaScriptコード
 document.addEventListener('DOMContentLoaded', function() {
     const paymentSelect = document.getElementById('paymentSelect');
     const paymentOptions = document.querySelector('.payment-options');
@@ -121,24 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-document.getElementById('purchaseForm').addEventListener('submit', function(e) {
-    if (!setPaymentMethod()) {
-        e.preventDefault(); // フォームの送信を中止
-    }
-});
-
-function setPaymentMethod() {
-    const displayText = document.querySelector('.payment-method-display').textContent;
-    const paymentMethodInput = document.getElementById('paymentMethod');
-    if (displayText !== '選択してください') {
-        paymentMethodInput.value = displayText;
-        return true;
-    } else {
-        alert('支払い方法を選択してください');
-        return false;
-    }
-}
 </script>
-@endsection
 
+@endsection

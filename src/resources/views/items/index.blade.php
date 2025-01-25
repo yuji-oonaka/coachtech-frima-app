@@ -39,7 +39,6 @@
                                 <img src="{{ $item->img_url }}" alt="{{ $item->name }}" class="product-listing__image">
                             </div>
                             <p class="product-listing__name">{{ $item->name }}</p>
-                            <p class="product-listing__price">¥{{ number_format($item->price) }}</p>
                         </div>
                     </a>
                     @endforeach
@@ -61,7 +60,6 @@
                             <img src="{{ $item->img_url }}" alt="{{ $item->name }}" class="product-listing__image">
                         </div>
                         <p class="product-listing__name">{{ $item->name }}</p>
-                        <p class="product-listing__price">¥{{ number_format($item->price) }}</p>
                     </div>
                 </a>
                 @endforeach

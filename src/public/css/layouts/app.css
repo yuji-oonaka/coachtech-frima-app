@@ -36,7 +36,7 @@
     padding: 0 15px;
     border: 1px solid #DDDDDD;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 24px;
 }
 
 .header-nav {
@@ -50,14 +50,14 @@
 .sell-button {
     color: #FFFFFF;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 24px;
     white-space: nowrap;
 }
 
 .nav-link {
     color: #FFFFFF;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
@@ -76,15 +76,11 @@
 
 .header-logout button {
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-}
-
-.logout-button:hover {
-    opacity: 0.8;
 }
 
 .success-message {
@@ -94,6 +90,7 @@
     right: 20px;
     background-color: #4CAF50;
     color: white;
+    font-size: 24px;
     padding: 15px 25px;
     border-radius: 4px;
     z-index: 1000;

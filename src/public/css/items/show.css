@@ -1,5 +1,5 @@
 .item-detail {
-    max-width: 1200px;
+    max-width: 1380px;
     margin: 40px auto;
     display: flex;
     gap: 60px;
@@ -30,7 +30,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px;
 }
 
 .item-detail__right {
