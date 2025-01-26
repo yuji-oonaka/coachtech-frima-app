@@ -94,25 +94,21 @@
             </div>
         @endif
 
-        <form action="{{ route('purchase.process', $item->id) }}" method="POST" id="purchaseForm">
+        <form action="{{ route('purchase.process', $item->id) }}" method="POST" target="_blank">
             @csrf
-            <!-- 隠しフィールドで配送先情報を送信 -->
             <input type="hidden" name="payment_method" id="paymentMethod" value="">
             <input type="hidden" name="shipping_postal_code" value="{{ $shippingAddress['postal_code'] }}">
             <input type="hidden" name="shipping_address" value="{{ $shippingAddress['address'] }}">
             <input type="hidden" name="shipping_building" value="{{ $shippingAddress['building'] ?? '' }}">
 
-            <!-- 購入ボタン -->
             <button type="submit" class="purchase-button">購入する</button>
         </form>
     </div>
 </div>
-
 @endsection
 
 @section('scripts')
 <script>
-// JavaScriptコード
 document.addEventListener('DOMContentLoaded', function() {
     const paymentSelect = document.getElementById('paymentSelect');
     const paymentOptions = document.querySelector('.payment-options');
@@ -145,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // クリック外での閉じる処理
     document.addEventListener('click', function(e) {
         if (!paymentSelect.contains(e.target) && !paymentOptions.contains(e.target)) {
             paymentOptions.style.display = 'none';
@@ -153,5 +148,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 @endsection

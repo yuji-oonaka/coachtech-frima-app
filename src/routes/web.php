@@ -16,6 +16,9 @@ Route::get('/item/search', [ItemController::class, 'searchItems'])->name('items.
 // 商品詳細画面
 Route::get('/item/{item_id}', [ItemController::class, 'displayItemDetails'])->name('items.show');
 
+Route::post('/stripe/webhook', [PurchaseController::class, 'handleStripeWebhook']);
+
+
 // 認証が必要なルート
 Route::middleware(['auth', 'verified'])->group(function () {
     // 送付先住所変更画面

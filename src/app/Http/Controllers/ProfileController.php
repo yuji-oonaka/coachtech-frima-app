@@ -62,7 +62,7 @@ class ProfileController extends Controller
 
         $this->updateUserAddress($user, $request);
 
-        return redirect()->route('profile.show')->with('success', 'プロフィールが更新されました');
+        return redirect()->route('items.index')->with('success', 'プロフィールが更新されました');
     }
 
     public function showListings()

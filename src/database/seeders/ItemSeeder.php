@@ -18,7 +18,7 @@ class ItemSeeder extends Seeder
                 'price' => 15000,
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
-                'condition' => '新品',
+                'condition' => '良好',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'brand_name' => 'エンポリオ・アルマーニ',
@@ -39,7 +39,7 @@ class ItemSeeder extends Seeder
                 'price' => 300,
                 'description' => '新鮮な玉ねぎ3束のセット',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
-                'condition' => '傷や汚れあり',
+                'condition' => 'やや傷や汚れあり',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'categories' => ['キッチン']
@@ -49,7 +49,7 @@ class ItemSeeder extends Seeder
                 'price' => 4000,
                 'description' => 'クラシックなデザインの革靴',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
-                'condition' => '全体的に状態が悪い',
+                'condition' => '状態が悪い',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'categories' => ['ファッション', 'メンズ']
@@ -59,7 +59,7 @@ class ItemSeeder extends Seeder
                 'price' => 45000,
                 'description' => '高性能なノートパソコン',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
-                'condition' => '新品',
+                'condition' => '良好',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'categories' => ['家電']
@@ -79,7 +79,7 @@ class ItemSeeder extends Seeder
                 'price' => 3500,
                 'description' => 'おしゃれなショルダーバッグ',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
-                'condition' => '傷や汚れあり',
+                'condition' => 'やや傷や汚れあり',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'categories' => ['ファッション', 'レディース']
@@ -89,7 +89,7 @@ class ItemSeeder extends Seeder
                 'price' => 500,
                 'description' => '使いやすいタンブラー',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
-                'condition' => '全体的に状態が悪い',
+                'condition' => '状態が悪い',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'categories' => ['キッチン']
@@ -99,7 +99,7 @@ class ItemSeeder extends Seeder
                 'price' => 4000,
                 'description' => '手動のコーヒーミル',
                 'img_url' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
-                'condition' => '新品',
+                'condition' => '良好',
                 'status' => '出品中',
                 'user_id' => $userIds[array_rand($userIds)],
                 'categories' => ['キッチン']

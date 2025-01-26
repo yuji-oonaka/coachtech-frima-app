@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use Stripe\Webhook;
+use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\Address;
@@ -68,19 +70,13 @@ class PurchaseController extends Controller
             return redirect()->route('purchase.show', $item_id)->with('error', '配送先住所が設定されていません。');
         }
 
-        if ($request->payment_method === 'クレジットカード') {
-            return $this->processStripePayment($item, $user, $shippingAddress);
-        }
-
-        return $this->processConveniencePayment($request, $item, $user, $shippingAddress);
-    }
-
-    private function processStripePayment($item, $user, $shippingAddress)
-    {
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
+        $paymentMethod = $request->input('payment_method');
+        $paymentMethodTypes = $paymentMethod === 'クレジットカード' ? ['card'] : ['konbini'];
+
         $session = Session::create([
-            'payment_method_types' => ['card'],
+            'payment_method_types' => $paymentMethodTypes,
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'jpy',
@@ -92,7 +88,7 @@ class PurchaseController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => route('purchase.success', ['item_id' => $item->id]),
+            'success_url' => route('purchase.success', ['item_id' => $item->id]) . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('purchase.show', ['item_id' => $item->id]),
             'metadata' => [
                 'item_id' => $item->id,
@@ -100,44 +96,84 @@ class PurchaseController extends Controller
                 'shipping_postal_code' => $shippingAddress['postal_code'],
                 'shipping_address' => $shippingAddress['address'],
                 'shipping_building' => $shippingAddress['building'] ?? '',
+                'payment_method' => $paymentMethod,
             ],
         ]);
 
         return redirect($session->url);
     }
 
-    private function processConveniencePayment($request, $item, $user, $shippingAddress)
-    {
-        $purchase = $this->savePurchase($user, $item, 'コンビニ支払い', $shippingAddress);
-
-        $item->status = '売却済み';
-        $item->save();
-
-        session()->forget('shipping_address');
-
-        return redirect()->route('profile.show', ['tab' => 'buy'])
-            ->with('success', '商品を購入しました');
-    }
-
     public function handleStripeSuccess(Request $request, $item_id)
     {
-        $item = Item::findOrFail($item_id);
-        $user = Auth::user();
-        $shippingAddress = session('shipping_address');
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        if (!$shippingAddress) {
-            return redirect()->route('purchase.show', $item_id)->with('error', '配送先住所が設定されていません。');
+        try {
+            $session = Session::retrieve($request->query('session_id'));
+
+            // クレジットカード決済の場合のみ処理を実行
+            if ($session->payment_status === 'paid' && $session->metadata->payment_method === 'クレジットカード') {
+                $item = Item::findOrFail($session->metadata->item_id);
+                $user = User::findOrFail($session->metadata->user_id);
+                $shippingAddress = [
+                    'postal_code' => $session->metadata->shipping_postal_code,
+                    'address' => $session->metadata->shipping_address,
+                    'building' => $session->metadata->shipping_building,
+                ];
+
+                $purchase = $this->savePurchase($user, $item, $session->metadata->payment_method, $shippingAddress);
+
+                $item->status = '売却済み';
+                $item->save();
+            }
+
+            return redirect()->route('profile.show', ['tab' => 'buy'])
+                ->with('success', '商品を購入しました');
+        } catch (\Exception $e) {
+            \Log::error('Stripe session retrieval failed: ' . $e->getMessage());
+            return redirect()->route('purchase.show', $item_id)
+                ->with('error', '購入処理中にエラーが発生しました。もう一度お試しください。');
+        }
+    }
+
+    public function handleStripeWebhook(Request $request)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        $payload = $request->getContent();
+        $sig_header = $request->header('Stripe-Signature');
+
+        try {
+            $event = Webhook::constructEvent(
+                $payload,
+                $sig_header,
+                env('STRIPE_WEBHOOK_SECRET')
+            );
+        } catch(\UnexpectedValueException $e) {
+            return response()->json(['error' => 'Invalid payload'], 400);
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+            return response()->json(['error' => 'Invalid signature'], 400);
         }
 
-        $purchase = $this->savePurchase($user, $item, 'クレジットカード', $shippingAddress);
+        if ($event->type === 'checkout.session.completed') {
+            $session = $event->data->object;
 
-        $item->status = '売却済み';
-        $item->save();
+            // コンビニ決済の場合のみ処理を実行
+            if ($session->metadata->payment_method === 'コンビニ支払い') {
+                $item = Item::findOrFail($session->metadata->item_id);
+                $user = User::findOrFail($session->metadata->user_id);
+                $shippingAddress = [
+                    'postal_code' => $session->metadata->shipping_postal_code,
+                    'address' => $session->metadata->shipping_address,
+                    'building' => $session->metadata->shipping_building,
+                ];
 
-        session()->forget('shipping_address');
+                $purchase = $this->savePurchase($user, $item, $session->metadata->payment_method, $shippingAddress);
 
-        return redirect()->route('profile.show', ['tab' => 'buy'])
-            ->with('success', '商品を購入しました');
+                $item->status = '売却済み';
+                $item->save();
+            }
+        }
+
+        return response()->json(['status' => 'success']);
     }
 
     private function savePurchase($user, $item, $paymentMethod, $shippingAddress)
