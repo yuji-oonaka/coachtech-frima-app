@@ -44,7 +44,8 @@ class ItemController extends Controller
         $keyword = $request->keyword;
 
         if (Auth::check()) {
-            $query = Auth::user()->likedItems();
+            $query = Auth::user()->likedItems()
+            ->whereNot('items.user_id', Auth::id());
             if ($request->filled('keyword')) {
                 $query->where('name', 'like', "%{$keyword}%");
             }

@@ -35,7 +35,7 @@ class LoginRequest extends FortifyLoginRequest
     {
         if (!Auth::attempt($this->only('email', 'password'))) {
             throw ValidationException::withMessages([
-                'email' => 'ログイン情報が登録されていません。',
+                'email' => 'ログイン情報が登録されていません',
             ]);
         }
     }
