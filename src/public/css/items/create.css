@@ -81,18 +81,6 @@
     color: #FFFFFF;
 }
 
-.create-product__select {
-    width: 680px;
-    height: 45px;
-    border: 1px solid #5F5F5F;
-    border-radius: 4px;
-    padding: 0 15px;
-    font-family: Inter, sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: #5F5F5F;
-}
-
 .create-product__name-section,
 .create-product__description-section,
 .create-product__price-section {
@@ -186,37 +174,20 @@
     margin-bottom: 20px;
 }
 
-.create-product__alert {
-    width: 680px;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 4px;
-}
-
-.create-product__alert--danger {
-    background-color: #ffebee;
-    border: 1px solid #ffcdd2;
-    color: #c62828;
-}
-
-.create-product__alert ul {
-    margin: 0;
-    padding-left: 20px;
-}
-
-.create-product__error-message {
-    color: #c62828;
+.create-product__error {
+    color: #FF0000;
     font-size: 14px;
     margin-top: 5px;
+    display: block;
 }
 
-.condition-select-wrapper {
+.create-product__condition-wrapper {
     position: relative;
     width: 680px;
     margin-top: 30px;
 }
 
-.condition-select {
+.create-product__condition-select {
     position: relative;
     width: 100%;
     height: 45px;
@@ -230,12 +201,12 @@
     background: #FFFFFF;
 }
 
-.select-arrow {
+.create-product__condition-arrow {
     color: #5F5F5F;
     font-size: 16px;
 }
 
-.condition-options {
+.create-product__condition-options {
     position: absolute;
     top: 0;
     left: 0;
@@ -246,11 +217,11 @@
     z-index: 1000;
 }
 
-.selected-option {
-    color: #5F5F5F;;
+.create-product__condition-selected {
+    color: #5F5F5F;
 }
 
-.condition-option {
+.create-product__condition-option {
     position: relative;
     padding: 8px 15px 8px 35px;
     cursor: pointer;
@@ -261,62 +232,18 @@
     align-items: center;
 }
 
-.condition-option:hover {
+.create-product__condition-option:hover {
     background: #5599EB;
 }
 
-.condition-option .checkmark {
+.create-product__condition-checkmark {
     position: absolute;
     left: 15px;
     display: none;
 }
 
-.condition-option.selected .checkmark {
+.create-product__condition-option--selected .create-product__condition-checkmark {
     display: inline-block;
-}
-
-.create-product {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* ... 他のスタイルは変更なし ... */
-
-.create-product__error {
-    color: #FF0000;
-    font-size: 14px;
-    margin-top: 5px;
-    display: block;
-}
-
-.create-product__alert {
-    width: 680px;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 4px;
-}
-
-.create-product__alert--danger {
-    background-color: #ffebee;
-    border: 1px solid #ffcdd2;
-    color: #c62828;
-}
-
-.create-product__input.is-invalid,
-.create-product__textarea.is-invalid,
-.create-product__image-upload.is-invalid,
-.condition-select-wrapper.is-invalid .condition-select,
-.create-product__category-list.is-invalid {
-    border-color: #c62828;
-}
-
-.create-product__alert ul {
-    margin: 0;
-    padding-left: 20px;
 }
 
 /* タブレット用スタイル (768-850px) */
@@ -328,7 +255,6 @@
     .create-product__image-section,
     .create-product__image-upload,
     .create-product__category-list,
-    .create-product__select,
     .create-product__name-section,
     .create-product__description-section,
     .create-product__price-section,
@@ -336,7 +262,7 @@
     .create-product__textarea,
     .create-product__submit,
     .create-product__divider,
-    .create-product__alert {
+    .create-product__condition-wrapper {
         width: 100%;
         max-width: 680px;
     }
@@ -364,7 +290,6 @@
     .create-product__image-section,
     .create-product__image-upload,
     .create-product__category-list,
-    .create-product__select,
     .create-product__name-section,
     .create-product__description-section,
     .create-product__price-section,
@@ -372,7 +297,7 @@
     .create-product__textarea,
     .create-product__submit,
     .create-product__divider,
-    .create-product__alert {
+    .create-product__condition-wrapper {
         width: 800px;
     }
 }

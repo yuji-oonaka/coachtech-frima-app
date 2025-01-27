@@ -135,10 +135,11 @@
                     <div class="item-detail__comment-form">
                         <h3 class="item-detail__form-title">商品へのコメント</h3>
                         <textarea
-                            class="item-detail__comment-input item-detail__comment-input--disabled"
-                            placeholder="コメントを入力してください"
-                            disabled
-                        ></textarea>
+                            name="content"
+                            class="item-detail__comment-input {{ $errors->has('content') ? 'item-detail__comment-input--invalid' : '' }}"
+                            required
+                        >{{ old('content') }}</textarea>
+
                         <button class="item-detail__comment-submit item-detail__comment-submit--disabled" disabled>
                             コメントを送信する
                         </button>

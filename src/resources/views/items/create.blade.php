@@ -43,16 +43,16 @@
 
         <div class="create-product__condition-section">
             <label class="create-product__section-title">商品の状態</label>
-            <div class="condition-select-wrapper">
-                <div class="condition-select" id="conditionSelect">
-                    <div class="selected-option">選択してください</div>
-                    <div class="select-arrow">▼</div>
+            <div class="create-product__condition-wrapper">
+                <div class="create-product__condition-select" id="conditionSelect">
+                    <div class="create-product__condition-selected">選択してください</div>
+                    <div class="create-product__condition-arrow">▼</div>
                 </div>
-                <div class="condition-options" style="display: none;">
+                <div class="create-product__condition-options" style="display: none;">
                     @foreach($conditions as $condition)
-                        <div class="condition-option" data-value="{{ $condition }}">
-                            <span class="checkmark">✓</span>
-                            <span class="option-text">{{ $condition }}</span>
+                        <div class="create-product__condition-option" data-value="{{ $condition }}">
+                            <span class="create-product__condition-checkmark">✓</span>
+                            <span class="create-product__condition-text">{{ $condition }}</span>
                         </div>
                     @endforeach
                 </div>
@@ -77,7 +77,7 @@
 
         <div class="create-product__description-section">
             <label class="create-product__section-title">商品の説明</label>
-            <textarea name="description" required class="create-product__textarea" maxlength="255">{{ old('description') }}</textarea>
+            <textarea name="description" required class="create-product__textarea">{{ old('description') }}</textarea>
             @error('description')
                 <span class="create-product__error">{{ $message }}</span>
             @enderror
@@ -114,6 +114,7 @@ document.getElementById('itemImage').addEventListener('change', function(e) {
         reader.readAsDataURL(file);
     }
 });
+
 document.querySelectorAll('.create-product__category-item').forEach(item => {
     item.addEventListener('click', function() {
         this.classList.toggle('create-product__category-item--selected');
@@ -124,11 +125,12 @@ document.querySelectorAll('.create-product__category-item').forEach(item => {
         document.getElementById('selectedCategory').value = selectedCategories.join(',');
     });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     const conditionSelect = document.getElementById('conditionSelect');
-    const conditionOptions = document.querySelector('.condition-options');
-    const selectedOption = conditionSelect.querySelector('.selected-option');
-    const options = document.querySelectorAll('.condition-option');
+    const conditionOptions = document.querySelector('.create-product__condition-options');
+    const selectedOption = conditionSelect.querySelector('.create-product__condition-selected');
+    const options = document.querySelectorAll('.create-product__condition-option');
     const conditionInput = document.getElementById('conditionInput');
 
     conditionSelect.addEventListener('click', function() {
@@ -140,12 +142,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const value = this.getAttribute('data-value');
 
             options.forEach(opt => {
-                opt.classList.remove('selected');
-                opt.querySelector('.checkmark').style.display = 'none';
+                opt.classList.remove('create-product__condition-option--selected');
+                opt.querySelector('.create-product__condition-checkmark').style.display = 'none';
             });
 
-            this.classList.add('selected');
-            this.querySelector('.checkmark').style.display = 'inline-block';
+            this.classList.add('create-product__condition-option--selected');
+            this.querySelector('.create-product__condition-checkmark').style.display = 'inline-block';
 
             selectedOption.textContent = value;
             conditionInput.value = value;

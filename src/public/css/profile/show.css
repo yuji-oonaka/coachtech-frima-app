@@ -1,10 +1,10 @@
-.profile-container {
+.profile {
     max-width: 100%;
     margin: 0 auto;
     padding: 40px 0;
 }
 
-.user-info {
+.profile__user-info {
     width: 1017px;
     height: 150px;
     margin: 40px auto;
@@ -13,7 +13,7 @@
     gap: 57px;
 }
 
-.profile-image {
+.profile__image {
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -21,13 +21,13 @@
     background: #D9D9D9;
 }
 
-.profile-image img {
+.profile__image-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.user-name {
+.profile__user-name {
     width: 250px;
     font-family: Inter;
     font-size: 36px;
@@ -37,7 +37,7 @@
     white-space: nowrap;
 }
 
-.edit-profile {
+.profile__edit-button {
     width: 310px;
     height: 59px;
     margin-left: auto;
@@ -52,14 +52,14 @@
     font-weight: 700;
 }
 
-.item-tabs {
+.profile__tabs {
     width: 100%;
     height: 47px;
     margin-top: 45px;
     border-bottom: 2px solid #5F5F5F;
 }
 
-.item-tab-list {
+.profile__tab-list {
     display: flex;
     list-style: none;
     margin: 0;
@@ -67,11 +67,11 @@
     padding: 0;
 }
 
-.item-tab-item {
+.profile__tab-item {
     margin-right: 80px;
 }
 
-.item-tab-link {
+.profile__tab-link {
     display: block;
     padding: 10px 0;
     color: #5F5F5F;
@@ -80,20 +80,11 @@
     position: relative;
 }
 
-.item-tab-item--active .item-tab-link {
+.profile__tab-item--active .profile__tab-link {
     color: #FF0000;
 }
 
-.items-grid {
-    width: 91%;
-    margin: 40px auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 50px;
-    justify-content: center;
-}
-
-.items-grid {
+.profile__items-grid {
     width: 100%;
     margin: 50px auto;
     display: grid;
@@ -104,12 +95,12 @@
     box-sizing: border-box;
 }
 
-.items-grid__item {
+.profile__item-card {
     width: 290px;
     margin: 0 auto;
 }
 
-.items-grid__image-wrapper {
+.profile__item-image-wrapper {
     position: relative;
     width: 100%;
     padding-top: 100%;
@@ -117,7 +108,7 @@
     overflow: hidden;
 }
 
-.items-grid__image {
+.profile__item-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -126,7 +117,7 @@
     object-fit: cover;
 }
 
-.items-grid__sold-label {
+.profile__item-sold-label {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -136,46 +127,24 @@
     border-radius: 4px;
 }
 
-.items-grid__name {
+.profile__item-name {
     margin-top: 10px;
     font-size: 24px;
 }
 
-.items-grid__no-items {
+.profile__no-items {
     grid-column: 1 / -1;
     text-align: center;
     font-size: 18px;
     color: #5F5F5F;
 }
 
-.sold-label {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255, 0, 0, 0.8);
-    color: white;
-    padding: 5px 20px;
-    border-radius: 4px;
-}
-
-.item-name {
-    margin-top: 10px;
-    font-size: 25px;
-    color: #000000;
-}
-
-.item-price {
-    font-weight: bold;
-    margin-top: 5px;
-}
-
 @media (max-width: 1540px) and (min-width: 1400px) {
-    .profile-container {
+    .profile {
         padding: 20px 10px;
     }
 
-    .user-info {
+    .profile__user-info {
         width: auto;
         height: auto;
         flex-direction: column;
@@ -183,105 +152,140 @@
         gap: 20px;
     }
 
-    .profile-image {
+    .profile__image {
         width: 100px;
         height: 100px;
     }
 
-    .user-name {
+    .profile__user-name {
         width: auto;
         font-size: 28px;
     }
 
-    .edit-profile {
+    .profile__edit-button {
         width: 250px;
         height: 50px;
         font-size: 16px;
         margin-left: 0;
     }
 
-    .item-tabs {
+    .profile__tabs {
         width: 100%;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .items-grid {
+    .profile__items-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .item-card {
+    .profile__item-card {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    .item-image {
+    .profile__item-image {
         max-width: 200px;
         margin: 0 auto 10px;
     }
 
-    .item-name,
-    .item-price {
+    .profile__item-name {
         width: 100%;
         text-align: center;
     }
 }
 
 @media (max-width: 850px) and (min-width: 768px) {
-    .profile-container {
-        padding: 10px 5px;
+    .profile {
+        padding: 20px 15px;
     }
 
-    .user-info {
-        width: auto;
+    .profile__user-info {
+        width: 100%;
         height: auto;
         flex-direction: column;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
+        margin-bottom: 30px;
     }
 
-    .profile-image {
-        width: 100px;
-        height: 100px;
+    .profile__image {
+        width: 150px;
+        height: 150px;
     }
 
-    .user-name {
-        width: auto;
-        font-size: 24px;
-    }
-
-    .edit-profile {
-        width: 200px;
-        height: 40px;
-        font-size: 14px;
-        margin-left: 0;
-    }
-
-    .item-tabs {
+    .profile__user-name {
         width: 100%;
-        flex-wrap: wrap;
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .profile__edit-button {
+        width: 80%;
+        max-width: 250px;
+        height: 45px;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .profile__tabs {
+        width: 100%;
+        display: flex;
         justify-content: center;
+        margin-bottom: 20px;
     }
 
-    .items-grid {
+    .profile__tab-list {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .profile__tab-item {
+        margin: 0;
+    }
+
+    .profile__tab-link {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
+
+    .profile__items-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 0 10px;
     }
 
-    .item-card {
+    .profile__item-card {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 
-    .item-image {
-        max-width: 150px;
-        margin: 0 auto 8px;
+    .profile__item-image-wrapper {
+        width: 100%;
+        padding-top: 100%;
+        /* 1:1 aspect ratio */
     }
 
-    .item-name,
-    .item-price {
+    .profile__item-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile__item-name {
         width: 100%;
         text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
     }
 }

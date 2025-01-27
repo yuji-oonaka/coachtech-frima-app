@@ -5,41 +5,41 @@
 @endsection
 
 @section('content')
-<div class="profile-container">
-    <div class="user-info">
-        <div class="profile-image">
-            <img src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="">
+<div class="profile">
+    <div class="profile__user-info">
+        <div class="profile__image">
+            <img src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="" class="profile__image-img">
         </div>
-        <h1 class="user-name">{{ $user->name }}</h1>
-        <a href="{{ route('profile.edit') }}" class="edit-profile">プロフィールを編集</a>
+        <h1 class="profile__user-name">{{ $user->name }}</h1>
+        <a href="{{ route('profile.edit') }}" class="profile__edit-button">プロフィールを編集</a>
     </div>
-    <div class="item">
-        <div class="item-tabs">
-            <ul class="item-tab-list">
-                <li class="item-tab-item {{ $tab === 'sell' ? 'item-tab-item--active' : '' }}">
-                    <a href="{{ route('profile.show', ['tab' => 'sell']) }}" class="item-tab-link">出品した商品</a>
+    <div class="profile__item">
+        <div class="profile__tabs">
+            <ul class="profile__tab-list">
+                <li class="profile__tab-item {{ $tab === 'sell' ? 'profile__tab-item--active' : '' }}">
+                    <a href="{{ route('profile.show', ['tab' => 'sell']) }}" class="profile__tab-link">出品した商品</a>
                 </li>
-                <li class="item-tab-item {{ $tab === 'buy' ? 'item-tab-item--active' : '' }}">
-                    <a href="{{ route('profile.show', ['tab' => 'buy']) }}" class="item-tab-link">購入した商品</a>
+                <li class="profile__tab-item {{ $tab === 'buy' ? 'profile__tab-item--active' : '' }}">
+                    <a href="{{ route('profile.show', ['tab' => 'buy']) }}" class="profile__tab-link">購入した商品</a>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="items-grid">
+    <div class="profile__items-grid">
         @forelse($items as $item)
-        <a href="{{ route('items.show', $item->id) }}" class="items-grid__item-link">
-            <div class="items-grid__item">
-                <div class="items-grid__image-wrapper">
+        <a href="{{ route('items.show', $item->id) }}" class="profile__item-link">
+            <div class="profile__item-card">
+                <div class="profile__item-image-wrapper">
                     @if($tab === 'sell' && $item->status === '売却済み')
-                        <div class="items-grid__sold-label">Sold</div>
+                        <div class="profile__item-sold-label">Sold</div>
                     @endif
-                    <img src="{{ $item->img_url }}" alt="{{ $item->name }}" class="items-grid__image">
+                    <img src="{{ $item->img_url }}" alt="{{ $item->name }}" class="profile__item-image">
                 </div>
-                <p class="items-grid__name">{{ $item->name }}</p>
+                <p class="profile__item-name">{{ $item->name }}</p>
             </div>
         </a>
         @empty
-        <p class="items-grid__no-items">表示する商品がありません。</p>
+        <p class="profile__no-items">表示する商品がありません。</p>
         @endforelse
     </div>
 </div>

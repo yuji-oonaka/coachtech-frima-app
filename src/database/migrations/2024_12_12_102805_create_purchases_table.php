@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('shipping_postal_code', 8);
             $table->string('shipping_address');
             $table->string('shipping_building')->nullable();
-            $table->enum('status', ['支払い待ち', '支払い済み', '発送済み', 'キャンセル']);
+            $table->enum('status', ['支払い済み']);
             $table->timestamps();
             $table->softDeletes();
         });

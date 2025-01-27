@@ -6,6 +6,10 @@
     padding: 0 45px;
 }
 
+.item-detail__left {
+    flex: 0 0 600px;
+}
+
 .item-detail__image {
     position: relative;
     width: 600px;
@@ -33,7 +37,8 @@
 }
 
 .item-detail__right {
-    width: 570px;
+    flex: 1;
+    max-width: 570px;
 }
 
 .item-detail__name {
@@ -105,7 +110,7 @@
 
 .item-detail__purchase-button {
     display: block;
-    width: 570px;
+    width: 100%;
     height: 56px;
     background: #FF5555;
     color: white;
@@ -119,15 +124,14 @@
 }
 
 .item-detail__purchase-button--disabled {
+    background: #999999;
     cursor: not-allowed;
-    pointer-events: none;
 }
 
 .item-detail__purchase-button--unavailable,
 .item-detail__purchase-button--sold-out {
     background: #999999;
     cursor: not-allowed;
-    pointer-events: none;
 }
 
 .item-detail__section-title {
@@ -206,15 +210,20 @@
 }
 
 .item-detail__comment-input {
-    width: 570px;
+    width: 100%;
     height: 150px;
     padding: 15px;
     border-radius: 4px;
     margin-bottom: 15px;
+    border: 1px solid #ccc;
+}
+
+.item-detail__comment-input--invalid {
+    border-color: #FF5555;
 }
 
 .item-detail__comment-submit {
-    width: 570px;
+    width: 100%;
     height: 56px;
     background: #FF5555;
     color: white;
@@ -225,8 +234,8 @@
 }
 
 .item-detail__comment-submit--disabled {
+    background: #999999;
     cursor: not-allowed;
-    pointer-events: none;
 }
 
 .item-detail__like-button--active .item-detail__like-icon {
@@ -234,7 +243,7 @@
 }
 
 .item-detail__info {
-    width: 570px;
+    width: 100%;
     padding-right: 11px;
     margin-bottom: 30px;
 }
@@ -271,7 +280,7 @@
 }
 
 .item-detail__description {
-    width: 570px;
+    width: 100%;
     padding-right: 11px;
     margin-bottom: 30px;
 }
@@ -281,13 +290,213 @@
     line-height: 1.6;
 }
 
-.item-detail__comment-input--invalid {
-    border-color: #FF5555 !important;
-}
-
 .item-detail__error-message {
     color: #FF5555;
     font-size: 14px;
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+/* PC (1400-1540px) 対応 */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .item-detail {
+        max-width: 1200px;
+        gap: 40px;
+        padding: 0 30px;
+    }
+
+    .item-detail__left {
+        flex: 0 0 500px;
+    }
+
+    .item-detail__image {
+        width: 500px;
+        height: 500px;
+    }
+
+    .item-detail__right {
+        max-width: 500px;
+    }
+
+    .item-detail__name {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .item-detail__price {
+        font-size: 40px;
+        line-height: 48px;
+    }
+
+    .item-detail__section-title {
+        font-size: 32px;
+        line-height: 38px;
+    }
+
+    .item-detail__user-name {
+        width: calc(100% - 88px);
+        font-size: 26px;
+        line-height: 31px;
+    }
+}
+
+/* タブレット (768-850px) 対応 */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .item-detail {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
+        align-items: center;
+    }
+
+    .item-detail__left,
+    .item-detail__right {
+        flex: none;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .item-detail__image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        margin-top: 0;
+    }
+
+    .item-detail__name {
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+    }
+
+    .item-detail__brand {
+        text-align: center;
+    }
+
+    .item-detail__price {
+        font-size: 32px;
+        line-height: 38px;
+        text-align: center;
+    }
+
+    .item-detail__social-actions {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .item-detail__section-title {
+        font-size: 28px;
+        line-height: 34px;
+        text-align: center;
+    }
+
+    .item-detail__user-name {
+        width: calc(100% - 88px);
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    .item-detail__category-tag {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .item-detail__description-content {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .item-detail__info-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .item-detail__label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .item-detail__value {
+        width: 100%;
+    }
+
+    .item-detail__category-tags {
+        justify-content: center;
+    }
+
+    .item-detail__comment-user {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .item-detail__user-avatar {
+        margin-bottom: 10px;
+    }
+
+    .item-detail__user-name {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .item-detail__comment-text {
+        font-size: 14px;
+    }
+
+    .item-detail__form-title {
+        text-align: center;
+    }
+
+    .item-detail__description {
+        text-align: center;
+    }
+
+    .item-detail__description-content {
+        font-size: 16px;
+        line-height: 1.5;
+        text-align: center;
+    }
+
+    .item-detail__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item-detail__info-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .item-detail__label {
+        width: 100%;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .item-detail__value {
+        width: 100%;
+        text-align: center;
+    }
+
+    .item-detail__category-tags {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .item-detail__category-tag {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 5px;
+    }
+
+    /* 商品の状態のスタイル */
+    .item-detail__condition {
+        text-align: center;
+        width: 100%;
+    }
 }

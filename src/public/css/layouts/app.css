@@ -1,10 +1,10 @@
-.auth-header {
+.header {
     width: 100%;
     height: 82px;
     background-color: #000000;
 }
 
-.header-content {
+.header__content {
     max-width: 100%;
     height: 100%;
     margin: 0 auto;
@@ -14,23 +14,23 @@
     padding: 0 40px;
 }
 
-.logo-wrapper {
+.header__logo-wrapper {
     flex: 0 0 auto;
 }
 
-.header-logo {
+.header__logo {
     width: 370px;
     height: auto;
     max-width: 100%;
 }
 
-.search-wrapper {
+.header__search {
     flex: 1 1 auto;
     max-width: 500px;
     margin: 0 20px;
 }
 
-.search-form input {
+.header__search-input {
     width: 100%;
     height: 50px;
     padding: 0 15px;
@@ -39,22 +39,22 @@
     font-size: 24px;
 }
 
-.header-nav {
+.header__nav {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     gap: 30px;
 }
 
-.nav-link,
-.sell-button {
+.header__nav-link,
+.header__sell-button {
     color: #FFFFFF;
     text-decoration: none;
     font-size: 24px;
     white-space: nowrap;
 }
 
-.nav-link {
+.header__nav-link {
     color: #FFFFFF;
     text-decoration: none;
     font-size: 24px;
@@ -63,18 +63,18 @@
     cursor: pointer;
 }
 
-.sell-button {
+.header__sell-button {
     background: #FFFFFF;
     color: #000000;
     padding: 10px 20px;
     border-radius: 4px;
 }
 
-.header-logout {
+.header__logout {
     margin: 0;
 }
 
-.header-logout button {
+.header__logout-button {
     color: #FFFFFF;
     font-size: 24px;
     background: none;
@@ -83,18 +83,20 @@
     padding: 0;
 }
 
-.success-message {
+.message {
     position: fixed;
     top: 102px;
-    /* ヘッダーの高さ(82px) + 余白(20px) */
     right: 20px;
-    background-color: #4CAF50;
-    color: white;
     font-size: 24px;
     padding: 15px 25px;
     border-radius: 4px;
     z-index: 1000;
     animation: fadeInOut 3s ease-in-out forwards;
+}
+
+.message--success {
+    background-color: #4CAF50;
+    color: white;
 }
 
 @keyframes fadeInOut {
@@ -119,49 +121,67 @@
     }
 }
 
-@media (max-width: 1540px) {
-    .header-logo {
+/* PC (1400-1540px) 対応 */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .header__logo {
         width: 300px;
     }
 
-    .search-wrapper {
+    .header__search {
         max-width: 400px;
     }
 
-    .header-nav {
+    .header__nav {
         gap: 20px;
     }
 
-    .nav-link,
-    .sell-button {
-        font-size: 18px;
+    .header__nav-link,
+    .header__sell-button,
+    .header__logout-button {
+        font-size: 20px;
+    }
+
+    .header__sell-button {
+        padding: 8px 16px;
     }
 }
 
-@media (max-width: 850px) {
-    .header-content {
+/* タブレット (768-850px) 対応 */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .header__content {
         padding: 0 20px;
     }
 
-    .header-logo {
+    .header__logo {
         width: 250px;
     }
 
-    .search-wrapper {
+    .header__search {
         max-width: 300px;
         margin: 0 10px;
     }
 
-    .header-nav {
+    .header__nav {
         gap: 15px;
     }
 
-    .nav-link,
-    .sell-button {
+    .header__nav-link,
+    .header__sell-button,
+    .header__logout-button {
         font-size: 16px;
     }
 
-    .sell-button {
+    .header__sell-button {
         padding: 8px 15px;
+    }
+
+    .header__search-input {
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .message {
+        font-size: 14px;
+        padding: 10px 15px;
     }
 }

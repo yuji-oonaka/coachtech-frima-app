@@ -10,32 +10,32 @@
     @yield('css')
 </head>
 <body>
-    <header class="auth-header">
-        <div class="header-content">
-            <a href="{{ route('items.index') }}" class="logo-wrapper">
-                <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH" class="header-logo">
+    <header class="header">
+        <div class="header__content">
+            <a href="{{ route('items.index') }}" class="header__logo-wrapper">
+                <img src="{{ asset('images/logo.svg') }}" alt="COACHTECH" class="header__logo">
             </a>
             @if(!$hideNavigation)
-            <div class="search-wrapper">
-                <form action="{{ route('items.search') }}" method="GET" class="search-form">
-                    <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}">
+            <div class="header__search">
+                <form action="{{ route('items.search') }}" method="GET" class="header__search-form">
+                    <input type="text" name="keyword" placeholder="なにをお探しですか？" value="{{ request('keyword') }}" class="header__search-input">
                     @if(request()->routeIs('items.mylist'))
                         <input type="hidden" name="tab" value="mylist">
                     @endif
                 </form>
             </div>
-            <nav class="header-nav">
+            <nav class="header__nav">
                 @auth
-                    <form method="POST" action="{{ route('logout') }}" class="header-logout">
+                    <form method="POST" action="{{ route('logout') }}" class="header__logout">
                         @csrf
-                        <button type="submit" class="nav-link">ログアウト</button>
+                        <button type="submit" class="header__nav-link header__logout-button">ログアウト</button>
                     </form>
-                    <a href="{{ route('profile.show') }}" class="nav-link">マイページ</a>
-                    <a href="{{ route('items.create') }}" class="sell-button">出品</a>
+                    <a href="{{ route('profile.show') }}" class="header__nav-link">マイページ</a>
+                    <a href="{{ route('items.create') }}" class="header__sell-button">出品</a>
                 @else
-                    <a href="{{ route('login') }}" class="nav-link">ログイン</a>
-                    <a href="{{ route('login') }}" class="nav-link">マイページ</a>
-                    <a href="{{ route('login') }}" class="sell-button">出品</a>
+                    <a href="{{ route('login') }}" class="header__nav-link">ログイン</a>
+                    <a href="{{ route('login') }}" class="header__nav-link">マイページ</a>
+                    <a href="{{ route('login') }}" class="header__sell-button">出品</a>
                 @endauth
             </nav>
             @endif
@@ -44,7 +44,7 @@
 
     <main>
         @if (session('success'))
-        <div class="success-message" id="successMessage">
+        <div class="message message--success" id="successMessage">
             {{ session('success') }}
         </div>
         @endif
