@@ -1,13 +1,22 @@
 artisan
+bcmath
 blade
 codesniffer
 composer
 controller
 dont
 eloquent
+enderror
+endsection
 fakerphp
 fortify
+freetype
+konbini
 laravel
+libfreetype
+libgd
+libjpeg
+libzip
 mailhog
 middleware
 migration
@@ -16,6 +25,7 @@ mylist
 namespace
 nunomaduro
 pestphp
+phar
 phpactor
 phpunit
 repository
@@ -25,3 +35,4 @@ tinker
 unliked
 use
 view
+yuji
