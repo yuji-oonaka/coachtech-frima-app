@@ -1,0 +1,50 @@
+# バージョン管理システム
+.git
+.gitignore
+.gitattributes
+
+# 依存関係ディレクトリ
+node_modules/
+vendor/
+.git/
+docker/
+
+# ビルド成果物
+/public/hot
+/public/storage
+/storage/*.key
+
+# 環境設定ファイル
+.env
+.env.*
+!.env.example
+
+# IDE/エディタ固有のファイル
+.idea
+.vscode
+*.sublime-project
+*.sublime-workspace
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+
+# ログファイル
+*.log
+
+# テストカバレッジレポート
+/coverage
+
+# その他の一時ファイル
+*.swp
+*.swo
+*.tmp
+
+# Dockerファイル（必要に応じて）
+# Dockerfile
+# docker-compose.yml
+
+# その他のプロジェクト固有の除外ファイル
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
