@@ -56,7 +56,7 @@ class PurchaseTest extends TestCase
         ]);
 
         $purchaseData = [
-            'payment_method' => 'クレジットカード',
+            'payment_method' => 'カード支払い',
             'shipping_postal_code' => '123-4567',
             'shipping_address' => 'テスト住所',
             'shipping_building' => 'テストビル101'
@@ -93,7 +93,7 @@ class PurchaseTest extends TestCase
             ->andReturn((object)[
                 'payment_status' => 'paid',
                 'metadata' => (object)[
-                    'payment_method' => 'クレジットカード',
+                    'payment_method' => 'カード支払い',
                     'item_id' => $this->item->id,
                     'user_id' => $this->user->id,
                     'shipping_postal_code' => '123-4567',
@@ -107,7 +107,7 @@ class PurchaseTest extends TestCase
     Purchase::create([
         'user_id' => $this->user->id,
         'item_id' => $this->item->id,
-        'payment_method' => 'クレジットカード',
+        'payment_method' => 'カード支払い',
         'shipping_postal_code' => '123-4567',
         'shipping_address' => 'テスト住所',
         'shipping_building' => 'テストビル101',
@@ -128,7 +128,7 @@ class PurchaseTest extends TestCase
     $this->assertDatabaseHas('purchases', [
         'user_id' => $this->user->id,
         'item_id' => $this->item->id,
-        'payment_method' => 'クレジットカード',
+        'payment_method' => 'カード支払い',
         'shipping_postal_code' => '123-4567',
         'shipping_address' => 'テスト住所',
         'shipping_building' => 'テストビル101',
@@ -153,7 +153,7 @@ class PurchaseTest extends TestCase
         Purchase::create([
             'user_id' => $this->user->id,
             'item_id' => $this->item->id,
-            'payment_method' => 'クレジットカード',
+            'payment_method' => 'カード支払い',
             'shipping_postal_code' => '123-4567',
             'shipping_address' => 'テスト住所',
             'shipping_building' => 'テストビル101',
@@ -173,7 +173,7 @@ class PurchaseTest extends TestCase
         Purchase::create([
             'user_id' => $this->user->id,
             'item_id' => $this->item->id,
-            'payment_method' => 'クレジットカード',
+            'payment_method' => 'カード支払い',
             'shipping_postal_code' => '123-4567',
             'shipping_address' => 'テスト住所',
             'shipping_building' => 'テストビル101',

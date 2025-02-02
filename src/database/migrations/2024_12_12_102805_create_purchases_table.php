@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
-            $table->enum('payment_method', ['クレジットカード', 'コンビニ支払い']);
+            $table->enum('payment_method', ['カード支払い', 'コンビニ支払い']);
             $table->string('shipping_postal_code', 8);
             $table->string('shipping_address');
             $table->string('shipping_building')->nullable();

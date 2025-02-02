@@ -19,7 +19,7 @@ class ShippingAddressTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->user = User::factory()->create();
         $this->item = Item::factory()->create([
             'status' => '出品中',
@@ -76,7 +76,7 @@ class ShippingAddressTest extends TestCase
 
         // 購入処理リクエスト（必要なフィールドを全て含む）
         $this->post(route('purchase.process', $this->item->id), [
-            'payment_method' => 'クレジットカード',
+            'payment_method' => 'カード支払い',
             '_token' => csrf_token()
         ]);
 
@@ -84,7 +84,7 @@ class ShippingAddressTest extends TestCase
         Purchase::create([
             'user_id' => $this->user->id,
             'item_id' => $this->item->id,
-            'payment_method' => 'クレジットカード',
+            'payment_method' => 'カード支払い',
             'shipping_postal_code' => '100-0001',
             'shipping_address' => '東京都千代田区千代田1-1',
             'shipping_building' => '皇居',

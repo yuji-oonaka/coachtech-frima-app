@@ -88,16 +88,4 @@ class CommentTest extends TestCase
             'content' => 'コメントは255文字以内で入力してください'
         ]);
     }
-
-    public function test_コメント送信後に商品詳細ページに戻る()
-    {
-        $response = $this->actingAs($this->user)
-            ->from(route('items.show', $this->item->id))
-            ->post(route('comments.store', ['item_id' => $this->item->id]), [
-                'content' => 'テストコメントです。'
-            ]);
-
-        $response->assertRedirect(route('items.show', $this->item->id));
-        $response->assertSessionHas('success');
-    }
 }

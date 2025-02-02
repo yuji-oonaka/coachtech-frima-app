@@ -72,7 +72,7 @@ class MyListTest extends TestCase
         Purchase::create([
             'user_id' => $this->user->id,
             'item_id' => $soldItem->id,
-            'payment_method' => 'クレジットカード',
+            'payment_method' => 'カード支払い',
             'shipping_postal_code' => '123-4567',
             'shipping_address' => 'テスト住所',
             'status' => '支払い済み'

@@ -30,6 +30,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'processPurchase'])->name('purchase.process');
     Route::get('/purchase/success/{item_id}', [PurchaseController::class, 'handleStripeSuccess'])
     ->name('purchase.success');
+    Route::post('/purchase/{item_id}/payment-method', [PurchaseController::class, 'updatePaymentMethod'])
+    ->name('payment.method.update');
+
 
     // 商品出品画面
     Route::get('/sell', [ItemController::class, 'showSellForm'])->name('items.create');

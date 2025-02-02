@@ -25,7 +25,7 @@
             <h2 class="purchase__section-title">支払い方法</h2>
             <div class="purchase__payment-select-wrapper">
                 <div class="purchase__payment-select" id="paymentSelect">
-                    <div class="purchase__selected-option">選択してください</div>
+                    <div class="purchase__selected-option">{{ session('selected_payment_method', '選択してください') }}</div>
                     <div class="purchase__select-arrow">▼</div>
                 </div>
                 <div class="purchase__payment-options" style="display: none;">
@@ -33,9 +33,9 @@
                         <span class="purchase__checkmark">✓</span>
                         <span class="purchase__option-text">コンビニ支払い</span>
                     </div>
-                    <div class="purchase__payment-option" data-value="クレジットカード">
+                    <div class="purchase__payment-option" data-value="カード支払い">
                         <span class="purchase__checkmark">✓</span>
-                        <span class="purchase__option-text">クレジットカード</span>
+                        <span class="purchase__option-text">カード支払い</span>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             <hr class="purchase__confirm-divider">
             <div class="purchase__payment-info">
                 <span class="purchase__label">支払い方法</span>
-                <span class="purchase__value purchase__payment-method-display">選択してください</span>
+                <span class="purchase__value purchase__payment-method-display">{{ session('selected_payment_method', '選択してください') }}</span>
             </div>
         </div>
 
@@ -96,7 +96,7 @@
 
         <form action="{{ route('purchase.process', $item->id) }}" method="POST" target="_blank" class="purchase__form">
             @csrf
-            <input type="hidden" name="payment_method" id="paymentMethod" value="">
+            <input type="hidden" name="payment_method" id="paymentMethod" value="{{ session('selected_payment_method', '') }}">
             <input type="hidden" name="shipping_postal_code" value="{{ $shippingAddress['postal_code'] }}">
             <input type="hidden" name="shipping_address" value="{{ $shippingAddress['address'] }}">
             <input type="hidden" name="shipping_building" value="{{ $shippingAddress['building'] ?? '' }}">
@@ -138,6 +138,9 @@ document.addEventListener('DOMContentLoaded', function() {
             paymentMethodInput.value = value;
 
             paymentOptions.style.display = 'none';
+
+            // 支払い方法の更新をサーバーに送信
+            updatePaymentMethod(value);
         });
     });
 
@@ -146,6 +149,26 @@ document.addEventListener('DOMContentLoaded', function() {
             paymentOptions.style.display = 'none';
         }
     });
+
+    function updatePaymentMethod(method) {
+        fetch("{{ route('payment.method.update', $item->id) }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ payment_method: method })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== 'success') {
+                console.error('支払い方法の更新に失敗しました');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 });
 </script>
 @endsection

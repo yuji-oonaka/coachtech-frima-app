@@ -38,6 +38,20 @@ class PurchaseController extends Controller
         return view('purchases.show', compact('item', 'shippingAddress'));
     }
 
+    public function updatePaymentMethod(Request $request, $item_id)
+    {
+        $validated = $request->validate([
+            'payment_method' => 'required|in:カード支払い,コンビニ支払い'
+        ]);
+
+        session(['selected_payment_method' => $validated['payment_method']]);
+
+        return response()->json([
+            'status' => 'success',
+            'payment_method' => $validated['payment_method']
+        ]);
+    }
+
     public function editAddress($item_id)
     {
         $item = Item::findOrFail($item_id);
@@ -73,7 +87,7 @@ class PurchaseController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $paymentMethod = $request->input('payment_method');
-        $paymentMethodTypes = $paymentMethod === 'クレジットカード' ? ['card'] : ['konbini'];
+        $paymentMethodTypes = $paymentMethod === 'カード支払い' ? ['card'] : ['konbini'];
 
         $session = Session::create([
             'payment_method_types' => $paymentMethodTypes,
@@ -111,7 +125,7 @@ class PurchaseController extends Controller
             $session = Session::retrieve($request->query('session_id'));
 
             // クレジットカード決済の場合のみ処理を実行
-            if ($session->payment_status === 'paid' && $session->metadata->payment_method === 'クレジットカード') {
+            if ($session->payment_status === 'paid' && $session->metadata->payment_method === 'カード支払い') {
                 $item = Item::findOrFail($session->metadata->item_id);
                 $user = User::findOrFail($session->metadata->user_id);
                 $shippingAddress = [

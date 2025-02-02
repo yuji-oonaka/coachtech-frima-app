@@ -62,14 +62,19 @@ class ItemListTest extends TestCase
 
     public function test_自分が出品した商品は表示されない()
     {
-        $ownItem = Item::factory()->create([
-            'user_id' => $this->user->id,
-            'status' => '出品中'
+        // ログインユーザーとは別のユーザーで商品作成
+        $otherUser = User::factory()->create();
+        $otherItem = Item::factory()->create([
+            'user_id' => $otherUser->id,
+            'status' => '出品中',
+            'name' => '他のユーザーの商品'
         ]);
 
-        $otherItem = Item::factory()->create([
-            'user_id' => $this->otherUser->id,
-            'status' => '出品中'
+        // ログインユーザーの商品（表示されないべき）
+        $ownItem = Item::factory()->create([
+            'user_id' => $this->user->id,
+            'status' => '出品中',
+            'name' => '自分の商品'
         ]);
 
         $response = $this->actingAs($this->user)->get('/');

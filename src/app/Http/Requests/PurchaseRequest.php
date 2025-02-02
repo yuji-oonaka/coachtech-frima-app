@@ -24,7 +24,7 @@ class PurchaseRequest extends FormRequest
     public function rules()
     {
         return [
-            'payment_method' => 'required|in:クレジットカード,コンビニ支払い',
+            'payment_method' => 'required|in:カード支払い,コンビニ支払い',
             'shipping_postal_code' => 'required|string|regex:/^\d{3}-\d{4}$/',
             'shipping_address' => 'required|string|max:255',
             'shipping_building' => 'nullable|string|max:255',

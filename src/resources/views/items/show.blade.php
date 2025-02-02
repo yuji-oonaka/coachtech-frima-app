@@ -63,16 +63,15 @@
                 @endif
             @else
                 @if($item->status === '売却済み')
-                    <button class="item-detail__purchase-button item-detail__purchase-button--unavailable" disabled>
+                    <button class="item-detail__purchase-button item-detail__purchase-button--sold-out" disabled>
                         売り切れました
                     </button>
                 @else
-                    <button class="item-detail__purchase-button item-detail__purchase-button--disabled" disabled>
+                    <a href="{{ route('login') }}" class="item-detail__purchase-button">
                         購入手続きへ
-                    </button>
+                    </a>
                 @endif
             @endauth
-
             <div class="item-detail__description">
                 <h2 class="item-detail__section-title">商品説明</h2>
                 <div class="item-detail__description-content">
@@ -134,15 +133,15 @@
                 @else
                     <div class="item-detail__comment-form">
                         <h3 class="item-detail__form-title">商品へのコメント</h3>
-                        <textarea
-                            name="content"
-                            class="item-detail__comment-input {{ $errors->has('content') ? 'item-detail__comment-input--invalid' : '' }}"
-                            required
-                        >{{ old('content') }}</textarea>
-
-                        <button class="item-detail__comment-submit item-detail__comment-submit--disabled" disabled>
-                            コメントを送信する
-                        </button>
+                        <form action="{{ route('login') }}" method="GET">
+                            <textarea
+                                name="content"
+                                class="item-detail__comment-input"
+                            >{{ old('content') }}</textarea>
+                            <button type="submit" class="item-detail__comment-submit">
+                                コメントを送信する
+                            </button>
+                        </form>
                     </div>
                 @endauth
             </div>

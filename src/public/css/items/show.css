@@ -123,11 +123,6 @@
     cursor: pointer;
 }
 
-.item-detail__purchase-button--disabled {
-    background: #999999;
-    cursor: not-allowed;
-}
-
 .item-detail__purchase-button--unavailable,
 .item-detail__purchase-button--sold-out {
     background: #999999;
@@ -231,11 +226,6 @@
     border-radius: 4px;
     font-size: 18px;
     cursor: pointer;
-}
-
-.item-detail__comment-submit--disabled {
-    background: #999999;
-    cursor: not-allowed;
 }
 
 .item-detail__like-button--active .item-detail__like-icon {
