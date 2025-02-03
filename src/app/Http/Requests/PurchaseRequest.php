@@ -40,7 +40,6 @@ class PurchaseRequest extends FormRequest
     {
         return [
             'payment_method.required' => '支払い方法を選択してください。',
-            'payment_method.in' => '無効な支払い方法が選択されました。',
             'shipping_postal_code.required' => '配送先の郵便番号を入力してください。',
             'shipping_postal_code.regex' => '郵便番号は123-4567の形式で入力してください。',
             'shipping_address.required' => '配送先の住所を入力してください。',

@@ -18,8 +18,21 @@
     margin-bottom: 40px;
 }
 
-.create-product__image-section {
+.create-product__image-section,
+.create-product__image-upload,
+.create-product__category-list,
+.create-product__name-section,
+.create-product__description-section,
+.create-product__price-section,
+.create-product__input,
+.create-product__textarea,
+.create-product__submit,
+.create-product__divider,
+.create-product__condition-wrapper {
     width: 680px;
+}
+
+.create-product__image-section {
     height: 186px;
     margin-bottom: 40px;
 }
@@ -34,7 +47,6 @@
 }
 
 .create-product__image-upload {
-    width: 680px;
     height: 150px;
     border: 1px solid #5F5F5F;
     border-radius: 4px;
@@ -56,7 +68,6 @@
 }
 
 .create-product__category-list {
-    width: 680px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -84,23 +95,22 @@
 .create-product__name-section,
 .create-product__description-section,
 .create-product__price-section {
-    width: 680px;
     margin-bottom: 30px;
 }
 
-.create-product__input {
-    width: 680px;
-    height: 45px;
+.create-product__input,
+.create-product__textarea {
     border: 1px solid #5F5F5F;
     border-radius: 4px;
+}
+
+.create-product__input {
+    height: 45px;
     padding: 0 15px;
 }
 
 .create-product__textarea {
-    width: 680px;
     height: 125px;
-    border: 1px solid #5F5F5F;
-    border-radius: 4px;
     padding: 15px;
     resize: none;
 }
@@ -125,7 +135,6 @@
 }
 
 .create-product__submit {
-    width: 680px;
     height: 60px;
     background: #FF5555;
     border: none;
@@ -155,7 +164,6 @@
 }
 
 .create-product__divider {
-    width: 680px;
     height: 46px;
     border-bottom: 1px solid #5F5F5F;
     margin: 40px 0;
@@ -183,22 +191,23 @@
 
 .create-product__condition-wrapper {
     position: relative;
-    width: 680px;
     margin-top: 30px;
 }
 
+.create-product__condition-select,
+.create-product__condition-option {
+    display: flex;
+    align-items: center;
+}
+
 .create-product__condition-select {
-    position: relative;
-    width: 100%;
     height: 45px;
     border: 1px solid #5F5F5F;
     border-radius: 4px;
     padding: 0 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     background: #FFFFFF;
+    cursor: pointer;
 }
 
 .create-product__condition-arrow {
@@ -224,12 +233,10 @@
 .create-product__condition-option {
     position: relative;
     padding: 8px 15px 8px 35px;
-    cursor: pointer;
     background: #636769;
     color: #EAEAEA;
     height: 30px;
-    display: flex;
-    align-items: center;
+    cursor: pointer;
 }
 
 .create-product__condition-option:hover {
@@ -246,7 +253,6 @@
     display: inline-block;
 }
 
-/* タブレット用スタイル (768-850px) */
 @media only screen and (min-width: 768px) and (max-width: 850px) {
     .create-product {
         padding: 30px 15px;
@@ -280,7 +286,6 @@
     }
 }
 
-/* PC用スタイル (1400-1540px) */
 @media only screen and (min-width: 1400px) and (max-width: 1540px) {
     .create-product {
         max-width: 1200px;

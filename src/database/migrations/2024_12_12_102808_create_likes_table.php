@@ -16,7 +16,7 @@ return new class extends Migration
             $table->softDeletes();
 
             // 同じユーザーが同じ商品に対して複数回いいねできないようにする
-            $table->unique(['user_id', 'item_id']);
+            $table->unique(['user_id', 'item_id', 'deleted_at']);
         });
     }
 

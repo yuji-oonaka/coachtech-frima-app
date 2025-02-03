@@ -47,20 +47,12 @@
 }
 
 .header__nav-link,
-.header__sell-button {
+.header__sell-button,
+.header__logout-button {
     color: #FFFFFF;
     text-decoration: none;
     font-size: 24px;
     white-space: nowrap;
-}
-
-.header__nav-link {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
 }
 
 .header__sell-button {
@@ -75,8 +67,6 @@
 }
 
 .header__logout-button {
-    color: #FFFFFF;
-    font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
@@ -100,28 +90,20 @@
 }
 
 @keyframes fadeInOut {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
 
-    10% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    90% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    0%,
     100% {
         opacity: 0;
         transform: translateY(-10px);
     }
+
+    10%,
+    90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* PC (1400-1540px) 対応 */
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
     .header__logo {
         width: 300px;
@@ -146,7 +128,6 @@
     }
 }
 
-/* タブレット (768-850px) 対応 */
 @media screen and (min-width: 768px) and (max-width: 850px) {
     .header__content {
         padding: 0 20px;

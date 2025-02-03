@@ -6,10 +6,10 @@
 
 .address__title {
     width: 180px;
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 36px;
     font-weight: 700;
-    line-height: 43.57px;
+    line-height: 1.21;
     text-align: left;
     margin: 0 auto 60px;
 }
@@ -25,10 +25,10 @@
 
 .address__label {
     display: block;
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 24px;
     font-weight: 700;
-    line-height: 29.05px;
+    line-height: 1.21;
     margin-bottom: 15px;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .address__submit-button {
-    width: 680px;
+    width: 100%;
     height: 60px;
     background: #FF5555;
     color: white;
@@ -63,7 +63,6 @@
     border-color: #FF5555;
 }
 
-/* PC (1400-1540px) 対応 */
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
     .address {
         max-width: 1100px;
@@ -75,12 +74,10 @@
 
     .address__title {
         font-size: 32px;
-        line-height: 38px;
     }
 
     .address__label {
         font-size: 22px;
-        line-height: 26px;
     }
 
     .address__input {
@@ -89,13 +86,11 @@
     }
 
     .address__submit-button {
-        width: 600px;
         height: 55px;
         font-size: 22px;
     }
 }
 
-/* タブレット (768-850px) 対応 */
 @media screen and (min-width: 768px) and (max-width: 850px) {
     .address {
         padding: 30px 15px;
@@ -103,7 +98,6 @@
 
     .address__title {
         font-size: 28px;
-        line-height: 34px;
         margin-bottom: 40px;
     }
 
@@ -118,7 +112,6 @@
 
     .address__label {
         font-size: 20px;
-        line-height: 24px;
     }
 
     .address__input {
@@ -127,7 +120,6 @@
     }
 
     .address__submit-button {
-        width: 100%;
         height: 50px;
         font-size: 20px;
         margin-top: 30px;

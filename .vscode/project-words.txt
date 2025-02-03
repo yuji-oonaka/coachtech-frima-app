@@ -11,8 +11,10 @@ dont
 eloquent
 endauth
 enderror
+endforelse
 endsection
 fakerphp
+forelse
 fortify
 freetype
 Kirschbaum

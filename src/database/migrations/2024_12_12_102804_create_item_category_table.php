@@ -19,7 +19,7 @@ return new class extends Migration
             $table->softDeletes();
 
             // ユニーク制約の追加
-            $table->unique(['item_id', 'category_id']);
+            $table->unique(['item_id', 'category_id', 'deleted_at']);
         });
     }
 

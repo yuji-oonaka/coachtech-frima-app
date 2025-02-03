@@ -31,7 +31,7 @@
 }
 
 .purchase__product-name {
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 30px;
     font-weight: 700;
     line-height: 36.31px;
@@ -44,7 +44,7 @@
 }
 
 .purchase__price-yen {
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 27px;
     font-weight: 400;
     line-height: 32.68px;
@@ -53,8 +53,6 @@
 .purchase__divider {
     width: 100%;
     max-width: 805px;
-    height: 0;
-    border: none;
     border-top: 1px solid #000000;
     margin: 40px 0;
 }
@@ -74,6 +72,12 @@
     margin-top: 30px;
 }
 
+.purchase__payment-select,
+.purchase__payment-option {
+    display: flex;
+    align-items: center;
+}
+
 .purchase__payment-select {
     width: 100%;
     height: 31px;
@@ -81,8 +85,6 @@
     border-radius: 4px;
     padding: 0 15px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     background: #FFFFFF;
 }
@@ -116,8 +118,6 @@
     background: #636769;
     color: #EAEAEA;
     height: 31px;
-    display: flex;
-    align-items: center;
 }
 
 .purchase__payment-option:hover {
@@ -138,7 +138,8 @@
     border-bottom: 1px solid #5F5F5F;
 }
 
-.purchase__option-text {
+.purchase__option-text,
+.purchase__selected-option {
     line-height: 31px;
 }
 
@@ -152,7 +153,7 @@
 }
 
 .purchase__change-address {
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 24.2px;
@@ -162,14 +163,12 @@
 
 .purchase__address-info {
     width: 280px;
-    margin-left: 61px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px 0 40px 61px;
 }
 
 .purchase__postal-code,
 .purchase__address-text {
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 600;
     line-height: 24.2px;
@@ -248,19 +247,13 @@
     padding-left: 20px;
 }
 
-.purchase__payment-section .purchase__error {
-    position: absolute;
-    bottom: -25px;
-    left: 61px;
-}
-
+.purchase__payment-section .purchase__error,
 .purchase__shipping-section .purchase__error {
     position: absolute;
     bottom: -25px;
     left: 61px;
 }
 
-/* PC (1400-1540px) 対応 */
 @media screen and (min-width: 1400px) and (max-width: 1540px) {
     .purchase {
         max-width: 1200px;
@@ -280,13 +273,13 @@
         height: 150px;
     }
 
-    .purchase__product-name {
-        font-size: 26px;
-        line-height: 32px;
-    }
-
+    .purchase__product-name,
     .purchase__product-price {
         font-size: 26px;
+    }
+
+    .purchase__product-name {
+        line-height: 32px;
     }
 
     .purchase__price-yen {
@@ -298,10 +291,7 @@
         margin-left: 20px;
     }
 
-    .purchase__payment-select-wrapper {
-        margin-left: 40px;
-    }
-
+    .purchase__payment-select-wrapper,
     .purchase__address-info {
         margin-left: 40px;
     }
@@ -311,7 +301,6 @@
     }
 }
 
-/* タブレット (768-850px) 対応 */
 @media screen and (min-width: 768px) and (max-width: 850px) {
     .purchase {
         flex-direction: column;
@@ -347,14 +336,14 @@
         text-align: center;
     }
 
-    .purchase__product-name {
-        font-size: 24px;
-        line-height: 30px;
-        margin-bottom: 10px;
-    }
-
+    .purchase__product-name,
     .purchase__product-price {
         font-size: 24px;
+    }
+
+    .purchase__product-name {
+        line-height: 30px;
+        margin-bottom: 10px;
     }
 
     .purchase__price-yen {
@@ -362,7 +351,6 @@
     }
 
     .purchase__divider {
-        width: 100%;
         margin: 20px 0;
     }
 
@@ -404,16 +392,11 @@
         transform: translateY(-50%);
     }
 
-    .purchase__confirm-surface {
-        width: 100%;
-    }
-
     .purchase__button {
         width: 100%;
         max-width: 500px;
         font-size: 20px;
-        padding: 0px 30px;
-        margin-top: 40px;
+        padding: 0 30px;
     }
 
     .purchase__payment-section .purchase__error,
@@ -424,12 +407,7 @@
         text-align: center;
     }
 
-    .purchase__alert {
-        width: 100%;
-    }
-
     .purchase__payment-select {
-        width: 100%;
         height: 40px;
         font-size: 16px;
     }
