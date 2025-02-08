@@ -32,7 +32,7 @@
 - 個別テストの場合は
 -php artisan test tests/Feature/〇〇.php
 
-Stripe決済に関して
+### Stripe決済に関して
 1. Stripeアカウントの準備
 Stripe開発者ダッシュボードでアカウント作成
 テストモードを有効化（ダッシュボード右上の「TEST DATA」表示を確認）
