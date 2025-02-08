@@ -101,9 +101,9 @@ brew install stripe/stripe-cli/stripe
 
 
 ## テストアカウント
-name: User1
-email: User1@example.com
-password: password
+name: User1  
+email: User1@example.com  
+password: password  
 - または会員登録にて任意のユーザーを登録
 
 ## 開発環境
