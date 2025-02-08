@@ -40,6 +40,7 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
+        $isFirstLogin = !$user->address()->exists();
 
         $profileValidator = Validator::make($request->all(), (new ProfileRequest())->rules(), (new ProfileRequest())->messages());
         $addressValidator = Validator::make($request->all(), (new AddressRequest())->rules(), (new AddressRequest())->messages());
@@ -62,7 +63,11 @@ class ProfileController extends Controller
 
         $this->updateUserAddress($user, $request);
 
-        return redirect()->route('items.index')->with('success', 'プロフィールが更新されました');
+        if ($isFirstLogin) {
+            return redirect()->route('items.index')->with('success', 'プロフィールが登録されました');
+        } else {
+            return redirect()->route('profile.show')->with('success', 'プロフィールが更新されました');
+        }
     }
 
     public function showListings()
@@ -92,10 +97,11 @@ class ProfileController extends Controller
     private function updateProfileImage($user, $image)
     {
         if ($user->profile_img_url) {
-            Storage::disk('public')->delete($user->profile_img_url);
+            $oldImagePath = str_replace('/storage/', '', $user->profile_img_url);
+            Storage::disk('public')->delete($oldImagePath);
         }
         $imagePath = $image->store('profile_images', 'public');
-        $user->profile_img_url = '/storage/' . $imagePath;
+        $user->profile_img_url = $imagePath;
     }
 
     private function updateUserAddress($user, $addressRequest)

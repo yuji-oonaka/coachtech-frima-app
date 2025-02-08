@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "{$item->name} - 商品購入")
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/purchases/show.css') }}">
 @endsection
@@ -9,7 +11,7 @@
     <div class="purchase__left">
         <div class="purchase__product-summary">
             <div class="purchase__product-image">
-                <img src="{{ $item->img_url }}" alt="{{ $item->name }}">
+                <img class="purchase__image" src="{{ $item->img_url }}" alt="{{ $item->name }}">
             </div>
             <div class="purchase__product-details">
                 <h1 class="purchase__product-name">{{ $item->name }}</h1>
@@ -86,7 +88,7 @@
 
         @if ($errors->any())
             <div class="purchase__alert purchase__alert--danger">
-                <ul>
+                <ul class="purchase__alert-list">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach

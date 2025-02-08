@@ -14,9 +14,6 @@ return new class extends Migration
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
-
-            // 同じユーザーが同じ商品に対して複数回いいねできないようにする
-            $table->unique(['user_id', 'item_id', 'deleted_at']);
         });
     }
 

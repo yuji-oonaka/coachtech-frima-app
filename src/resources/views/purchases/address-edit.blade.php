@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "配送先住所の変更")
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/purchases/address.css') }}">
 @endsection

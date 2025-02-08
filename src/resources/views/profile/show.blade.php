@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "マイページ")
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/profile/show.css') }}">
 @endsection
@@ -8,7 +10,7 @@
 <div class="profile">
     <div class="profile__user-info">
         <div class="profile__image">
-            <img src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="" class="profile__image-img">
+            <img src="{{ asset('storage/' . $user->profile_img_url) }}" alt="" class="profile__image-img">
         </div>
         <h1 class="profile__user-name">{{ $user->name }}</h1>
         <a href="{{ route('profile.edit') }}" class="profile__edit-button">プロフィールを編集</a>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', "プロフィール設定")
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/profile/edit.css') }}">
 @endsection
@@ -14,7 +16,7 @@
         <input type="hidden" name="prefix" value="">
         <div class="profile-edit__image-section">
             <div class="profile-edit__image">
-                <img id="preview" src="{{ $user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="" class="profile-edit__image-preview">
+                <img id="preview" src="{{ $user->profile_img_url ? asset('storage/' . $user->profile_img_url) : asset('images/default-avatar.png') }}" alt="" class="profile-edit__image-preview">
             </div>
             <div class="profile-edit__image-upload">
                 <input type="file" name="profile_image" id="profileImage" accept="image/*" class="profile-edit__image-input">
