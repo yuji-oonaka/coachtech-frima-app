@@ -1,0 +1,146 @@
+.product-listing {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.product-listing__tabs {
+    width: 100%;
+    height: 47px;
+    margin-top: 45px;
+    border-bottom: 2px solid #5F5F5F;
+}
+
+.product-listing__tab-list {
+    display: flex;
+    list-style: none;
+    margin: 0 0 0 270px;
+    padding: 0;
+}
+
+.product-listing__tab-item {
+    margin-right: 80px;
+}
+
+.product-listing__tab-link {
+    display: block;
+    padding: 10px 0;
+    color: #5F5F5F;
+    text-decoration: none;
+    font-size: 24px;
+    position: relative;
+}
+
+.product-listing__tab-item--active .product-listing__tab-link {
+    color: #FF0000;
+}
+
+.product-listing__grid {
+    width: 91%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
+    gap: 50px;
+    justify-content: center;
+}
+
+.product-listing__item {
+    width: 290px;
+}
+
+.product-listing__item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.product-listing__item-link:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.product-listing__image-wrapper {
+    position: relative;
+    width: 290px;
+    height: 290px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.product-listing__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-listing__sold-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.8);
+    color: #FFFFFF;
+    padding: 5px 20px;
+    border-radius: 4px;
+}
+
+.product-listing__name {
+    margin-top: 10px;
+    font-size: 25px;
+    line-height: 1.4;
+}
+
+.product-listing__no-items {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    margin-left: 80px;
+    font-size: 24px;
+    color: #333333;
+    white-space: nowrap;
+}
+
+@media (max-width: 1540px) and (min-width: 1400px) {
+    .product-listing__grid {
+        width: 95%;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 850px) and (min-width: 768px) {
+    .product-listing {
+        padding: 0 10px;
+    }
+
+    .product-listing__grid {
+        width: 98%;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+    }
+
+    .product-listing__item,
+    .product-listing__image-wrapper {
+        width: 100%;
+    }
+
+    .product-listing__image-wrapper {
+        height: 0;
+        padding-top: 100%;
+        /* 正方形を維持 */
+        position: relative;
+    }
+
+    .product-listing__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .product-listing__no-items {
+        width: 100%;
+        text-align: center;
+        margin-left: 10px;
+        font-size: 20px;
+    }
+}

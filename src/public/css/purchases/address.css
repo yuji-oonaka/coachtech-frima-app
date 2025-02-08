@@ -1,0 +1,131 @@
+.address {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.address__title {
+    width: 180px;
+    font-family: Inter, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.21;
+    text-align: left;
+    margin: 0 auto 60px;
+}
+
+.address__form {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.address__form-group {
+    margin-bottom: 40px;
+}
+
+.address__label {
+    display: block;
+    font-family: Inter, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.21;
+    margin-bottom: 15px;
+}
+
+.address__input {
+    width: 100%;
+    height: 45px;
+    border: 1px solid #5F5F5F;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+
+.address__submit-button {
+    width: 100%;
+    height: 60px;
+    background: #FF5555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.address__error-message {
+    color: #FF5555;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.address__input--invalid {
+    border-color: #FF5555;
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .address {
+        max-width: 1100px;
+    }
+
+    .address__form {
+        width: 600px;
+    }
+
+    .address__title {
+        font-size: 32px;
+    }
+
+    .address__label {
+        font-size: 22px;
+    }
+
+    .address__input {
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .address__submit-button {
+        height: 55px;
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .address {
+        padding: 30px 15px;
+    }
+
+    .address__title {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+
+    .address__form {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .address__form-group {
+        margin-bottom: 30px;
+    }
+
+    .address__label {
+        font-size: 20px;
+    }
+
+    .address__input {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .address__submit-button {
+        height: 50px;
+        font-size: 20px;
+        margin-top: 30px;
+    }
+
+    .address__error-message {
+        font-size: 12px;
+    }
+}
