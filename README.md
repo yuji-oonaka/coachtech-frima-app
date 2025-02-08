@@ -66,10 +66,10 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 - コンビニ決済にてStripe webhookが必要となります
 
 #### Webhook設定
--　Stripe CLIのインストール (コンテナではなくローカルにインストール)
+-　Stripe CLIのインストール (ローカルにインストール)
+- macOSではHomebrewでインストール可能です
 ```
-curl -sL https://github.com/stripe/stripe-cli/releases/download/v1.15.1/stripe_1.15.1_linux_amd64.tar.gz | tar xz
-sudo mv stripe /usr/local/bin/
+brew install stripe/stripe-cli/stripe
 ```
 - `stripe login`
 - 表示されたURLにアクセスしアクセスを許可するを押す
