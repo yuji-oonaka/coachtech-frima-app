@@ -68,10 +68,24 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 #### Webhook設定
 -　Stripe CLIのインストール (ローカルにインストール)
 開発環境のみでのテストのための一時的な使用です
+- ubuntuの場合
+```
+# 最新版のダウンロード（2025年2月現在）
+curl -LO https://github.com/stripe/stripe-cli/releases/download/v1.24.0/stripe_1.24.0_linux_x86_64.tar.gz
+
+# ファイル解凍
+tar -xvf stripe_1.24.0_linux_x86_64.tar.gz
+
+# 実行権限付与
+chmod +x stripe
+
+# システムパスに配置
+sudo mv stripe /usr/local/bin/
+```
+- macOSではHomebrewでインストールできます
 ```
 brew install stripe/stripe-cli/stripe
 ```
--windows
 - `stripe login`
 - 表示されたURLにアクセスしアクセスを許可するを押す
 - `stripe listen --forward-to http://host.docker.internal/stripe/webhook`
