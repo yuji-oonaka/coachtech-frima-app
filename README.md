@@ -67,10 +67,11 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 #### Webhook設定
 -　Stripe CLIのインストール (ローカルにインストール)
-- macOSではHomebrewでインストール可能です
+開発環境のみでのテストのための一時的な使用です
 ```
 brew install stripe/stripe-cli/stripe
 ```
+-windows
 - `stripe login`
 - 表示されたURLにアクセスしアクセスを許可するを押す
 - `stripe listen --forward-to http://host.docker.internal/stripe/webhook`
