@@ -116,7 +116,7 @@ password: password
 - Laravel:11.53.1
 - MySQL:8.0.26
 - nginx:1.21.1
-- stripe:16.4.0
+- stripe
 - mailhog
 
 ## ER図
