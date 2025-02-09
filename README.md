@@ -1,6 +1,13 @@
 # coachtech-frima-app
+
 ### coachtechフリマアプリ
 アイテムの出品と購入を行うためのフリマアプリ
+
+## 主要機能
+
+- ユーザー登録(MailHog確認あり)・認証
+- 商品の出品・購入
+- Stripe決済（カード・コンビニ）
 
 ## 環境構築
 ### Dockerビルド
@@ -111,13 +118,16 @@ password: password
 - 会員登録画面:http://localhost/register
 - phpMyAdmin:http://localhost:8080
 
-## 使用技術
-- PHP:8.3.16
-- Laravel:11.53.1
-- MySQL:8.0.26
-- nginx:1.21.1
-- stripe
-- mailhog
+## 技術スタック
+
+| 技術 | バージョン |
+|------|------------|
+| PHP | 8.3.16 |
+| Laravel | 11.53.1 |
+| MySQL | 8.0.26 |
+| nginx | 1.21.1 |
+| Stripe | 16.4.0 |
+| MailHog | 最新版 |
 
 ## ER図
 ![coachtech-frima-app drawio](https://github.com/user-attachments/assets/27f7b887-9219-471d-a152-ff742308a096)
