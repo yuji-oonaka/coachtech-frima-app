@@ -132,5 +132,4 @@ password: password
 | MailHog | 最新版 |
 
 ## ER図
-![coachtech-frima-app drawio](https://github.com/user-attachments/assets/329bd131-0fe1-4453-a4db-67692f11615b)
-
+![coachtech-frima-app drawio](https://github.com/user-attachments/assets/b6d3ea58-2f1c-4ae7-8a90-0952d4dcff19)
