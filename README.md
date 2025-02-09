@@ -28,17 +28,6 @@
 - 送信されたメールをリアルタイムで確認
 - 登録したメールアドレスを選択後、メールアドレスの確認を押すと会員登録が完了しプロフィール設定画面に遷移する
 
-## PHPunitテストに関して
-- docker-compose exec bash
-1. `cp .env.testing.example .env.testing`
-2. `php artisan key:generate --env=testing`
-3. `php artisan migrate --env=testing`
-4. `php artisan db:seed --env=testing`
-5. `php artisan test --testsuite=Feature`
-
-- 個別テストの場合は
-- php artisan test tests/Feature/〇〇Test.php
-
 ## Stripe決済テストに関して
 1. Stripeアカウントの準備
 - https://stripe.com/jp
@@ -51,7 +40,7 @@
 公開可能キー（Publishable key）
 シークレットキー（Secret key）`
 3. 環境変数の設定
-- `.env及び.env.testingに追加`
+- `.envに追加`
 ```
 STRIPE_KEY=pk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -96,7 +85,7 @@ brew install stripe/stripe-cli/stripe
 - `stripe login`
 - 表示されたURLにアクセスしアクセスを許可するを押す
 - `stripe listen --forward-to http://host.docker.internal/stripe/webhook`
-- 生成されたシグネチャシークレットを.env及び.env.testingに追加
+- 生成されたシグネチャシークレットを.envに追加
 `STRIPE_WEBHOOK_SECRET=whsec_XXXXXXXX`
 
 6-2. コンビニ支払いを選択し購入するを押す
@@ -106,6 +95,19 @@ brew install stripe/stripe-cli/stripe
 - Ubuntuをもう一つ立ち上げ
 - `stripe trigger payment_intent.succeeded`を入力すると即座に購入が完了する
 
+## PHPunitテストに関して
+- docker-compose exec bash
+1. `cp .env.testing.example .env.testing`
+2. `php artisan key:generate --env=testing`
+3. `php artisan migrate --env=testing`
+4. `php artisan db:seed --env=testing`
+5. `php artisan test --testsuite=Feature`
+
+- 個別テストの場合は
+- php artisan test tests/Feature/〇〇Test.php
+
+> [!NOTE]
+> .env.testingにもStripeのAPIキーを設定してください
 
 ## テストアカウント
 name: User1  
