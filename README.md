@@ -72,7 +72,7 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ## コンビニ支払いテストに関して
 - コンビニ決済にてStripe webhookが必要となります
 
-#### Webhook設定
+## Webhook設定
 -　Stripe CLIのインストール (ローカルにインストール)
 開発環境のみでのテストのための一時的な使用です
 - ubuntuの場合
