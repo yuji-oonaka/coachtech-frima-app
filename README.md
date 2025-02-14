@@ -96,7 +96,7 @@ brew install stripe/stripe-cli/stripe
 - `stripe trigger payment_intent.succeeded`を入力すると即座に購入が完了する
 
 ## PHPunitテストに関して
-- docker-compose exec bash
+- docker-compose exec php bash
 1. `cp .env.testing.example .env.testing`
 2. `php artisan key:generate --env=testing`
 3. `php artisan migrate --env=testing`
