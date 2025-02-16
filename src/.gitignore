@@ -6,9 +6,9 @@
 /storage/*.key
 /vendor
 .env
-.env.testing
-.env.backup
-.env.production
+.env.*
+!.env.example
+!.env.testing.example
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
@@ -20,3 +20,4 @@ yarn-error.log
 /.idea
 /.vscode
 /.zed
+.env.testing
