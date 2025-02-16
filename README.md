@@ -1,6 +1,6 @@
 # coachtech-frima-app
 
-coachtechフリマアプリ
+coachtechフリマ
 アイテムの出品と購入を行うためのフリマアプリ
 
 ## 目次
