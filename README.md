@@ -68,7 +68,9 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 6-2. コンビニ支払いを選択し購入するを押す
 - `stripe決済画面に遷移したあと`
-- `succeed_immediately@test.comと任意の名前を入力`支払いをおす
+- メールアドレス`succeed_immediately@test.com`
+- 名前 `ヤマダ　タロウ`
+- `支払い`を押す
 
 ## PHPunitテストに関して
 - docker-compose exec php bash
