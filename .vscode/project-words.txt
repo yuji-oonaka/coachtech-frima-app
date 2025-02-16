@@ -1,3 +1,4 @@
+appuser
 artisan
 bcmath
 blade
@@ -8,6 +9,7 @@ codesniffer
 composer
 controller
 Curotec
+dearmor
 dont
 eloquent
 endauth
@@ -18,6 +20,7 @@ fakerphp
 forelse
 fortify
 freetype
+keyrings
 Kirschbaum
 konbini
 Laracasts
@@ -32,6 +35,7 @@ migration
 model
 mylist
 namespace
+noninteractive
 nunomaduro
 Otep
 Otwell
