@@ -45,10 +45,6 @@
 STRIPE_KEY=pk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ```
-4.Stripeパッケージのインストール
-- docker-compose exec php bash
-- `composer require stripe/stripe-php`
-
 5. 購入画面にて支払い方法選択
 - `カード支払いを選択し購入するを押す`
 - `stripe決済画面に遷移した後`
@@ -62,26 +58,6 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 - コンビニ決済にてStripe webhookが必要となります
 
 ## Webhook設定
--　Stripe CLIのインストール (ローカルにインストール)
-開発環境のみでのテストのための一時的な使用です
-- ubuntuの場合
-```
-# 最新版のダウンロード（2025年2月現在）
-curl -LO https://github.com/stripe/stripe-cli/releases/download/v1.24.0/stripe_1.24.0_linux_x86_64.tar.gz
-
-# ファイル解凍
-tar -xvf stripe_1.24.0_linux_x86_64.tar.gz
-
-# 実行権限付与
-chmod +x stripe
-
-# システムパスに配置
-sudo mv stripe /usr/local/bin/
-```
-- macOSではHomebrewでインストールできます
-```
-brew install stripe/stripe-cli/stripe
-```
 - `stripe login`
 - 表示されたURLにアクセスしアクセスを許可するを押す
 - `stripe listen --forward-to http://host.docker.internal/stripe/webhook`
@@ -91,9 +67,6 @@ brew install stripe/stripe-cli/stripe
 6-2. コンビニ支払いを選択し購入するを押す
 - `stripe決済画面に遷移したあと`
 - `任意のメールアドレスと名前を入力`支払いをおす
-
-- Ubuntuをもう一つ立ち上げ
-- `stripe trigger payment_intent.succeeded`を入力すると即座に購入が完了する
 
 ## PHPunitテストに関して
 - docker-compose exec php bash
