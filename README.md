@@ -125,6 +125,7 @@ stripe決済画面に遷移したあと
 - 商品一覧画面:http://localhost
 - 会員登録画面:http://localhost/register
 - phpMyAdmin:http://localhost:8080
+- phpmyadmin_testing:http://localhost:8081
 
 ## [技術スタック](pplx://action/followup)
 
