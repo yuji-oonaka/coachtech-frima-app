@@ -39,13 +39,13 @@ coachtechフリマアプリ
 6. `php artisan db:seed`
 7. `php artisan storage:link`
 
-### mailhogを利用した会員登録に関して
+## mailhogを利用した会員登録に関して
 
 1. 会員登録画面にて登録後、ブラウザにてhttp://localhost:8025にアクセス
 2. 送信されたメールをリアルタイムで確認
 3. 登録したメールアドレスを選択後、メールアドレスの確認を押すと会員登録が完了しプロフィール設定画面に遷移する
 
-### Stripe決済テストに関して
+## Stripe決済テストに関して
 
 #### Stripeアカウントの準備
 
