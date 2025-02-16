@@ -98,7 +98,7 @@ stripe決済画面に遷移したあと
 - 名前 ヤマダ　タロウ
 支払いを押す
 
-### PHPunitテストに関して
+## PHPunitテストに関して
 - docker-compose exec php bash
 1. `cp .env.testing.example .env.testing`
 2. `php artisan key:generate --env=testing`
