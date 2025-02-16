@@ -103,7 +103,7 @@
                     @foreach($item->comments as $comment)
                         <div class="item-detail__comment">
                             <div class="item-detail__comment-user">
-                                <img src="{{ $comment->user->profile_img_url ?? asset('images/default-avatar.png') }}" alt="" class="item-detail__user-avatar">
+                                <img src="{{ asset('storage/' . ($comment->user->profile_img_url ?? 'images/default-avatar.png')) }}" alt="" class="item-detail__user-avatar">
                                 <span class="item-detail__user-name">{{ $comment->user->name }}</span>
                             </div>
                             <p class="item-detail__comment-text">{!! nl2br(e($comment->content)) !!}</p>
