@@ -96,14 +96,14 @@
             </div>
         @endif
 
-        <form action="{{ route('purchase.process', $item->id) }}" method="POST" class="purchase__form">
+        <form action="{{ route('purchase.process', $item->id) }}" method="POST" class="purchase__form" id="purchaseForm" target="_blank">
             @csrf
             <input type="hidden" name="payment_method" id="paymentMethod" value="">
             <input type="hidden" name="shipping_postal_code" value="{{ $shippingAddress['postal_code'] }}">
             <input type="hidden" name="shipping_address" value="{{ $shippingAddress['address'] }}">
             <input type="hidden" name="shipping_building" value="{{ $shippingAddress['building'] ?? '' }}">
 
-            <button type="submit" class="purchase__button">購入する</button>
+            <button type="submit" class="purchase__button" id="purchaseButton">購入する</button>
         </form>
     </div>
 </div>
@@ -152,6 +152,22 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!paymentSelect.contains(e.target) && !paymentOptions.contains(e.target)) {
             paymentOptions.style.display = 'none';
         }
+    });
+
+    const purchaseForm = document.getElementById('purchaseForm');
+    const purchaseButton = document.getElementById('purchaseButton');
+
+    purchaseButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        const paymentMethod = paymentMethodInput.value;
+
+        if (paymentMethod === 'コンビニ支払い') {
+            purchaseForm.target = '_blank';
+        } else {
+            purchaseForm.target = '_self';
+        }
+
+        purchaseForm.submit();
     });
 });
 </script>
