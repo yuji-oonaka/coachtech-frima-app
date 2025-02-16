@@ -55,9 +55,11 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 - 入力画面に記入後`支払う`を押すと購入が完了となる
 
 ## コンビニ支払いテストに関して
-- コンビニ決済にてStripe webhookが必要となります
+- コンビニ決済にてStripe webhookを使用します
 
 ## Webhook設定
+
+- `docker-compose exec php bash`
 - `stripe login`
 - 表示されたURLにアクセスしアクセスを許可するを押す
 - `stripe listen --forward-to http://host.docker.internal/stripe/webhook`
@@ -66,7 +68,7 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 6-2. コンビニ支払いを選択し購入するを押す
 - `stripe決済画面に遷移したあと`
-- `任意のメールアドレスと名前を入力`支払いをおす
+- `succeed_immediately@test.comと任意の名前を入力`支払いをおす
 
 ## PHPunitテストに関して
 - docker-compose exec php bash
