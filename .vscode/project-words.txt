@@ -29,6 +29,7 @@ libfreetype
 libgd
 libjpeg
 libzip
+Mailgun
 mailhog
 middleware
 migration
