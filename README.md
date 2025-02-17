@@ -97,7 +97,7 @@ STRIPE_WEBHOOK_SECRET=whsec_XXXXXXXX
 stripe決済画面に遷移したあと
 - メールアドレス `succeed_immediately@test.com`
 - 名前 `任意の名前`
-支払いを押す
+- 支払いを押す
 
 ## PHPunitテストに関して
 - docker-compose exec php bash
