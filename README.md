@@ -135,6 +135,8 @@ stripe決済画面に遷移したあと
 
 または会員登録にて任意のユーザーを登録
 
+[目次に戻る](#目次)
+
 ## [開発環境](pplx://action/followup)
 
 - 商品一覧画面:http://localhost
