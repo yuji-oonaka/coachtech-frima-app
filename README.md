@@ -84,7 +84,7 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 [目次に戻る](#目次)
 
-### コンビニ支払いテストに関して
+## コンビニ支払いテストに関して
 
 コンビニ決済にてStripe webhookを使用します
 
