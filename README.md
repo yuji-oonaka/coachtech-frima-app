@@ -24,6 +24,7 @@ coachtechフリマ
 - 商品の閲覧・検索・出品・購入
 - Stripe決済（カード・コンビニ）
 
+[目次に戻る](#目次)
 
 ## 環境構築
 ### Dockerビルド
@@ -37,13 +38,17 @@ coachtechフリマ
 4. `php artisan key:generate`
 5. `php artisan migrate`
 6. `php artisan db:seed`
-7. `php artisan storage:link`
+7. `php artisan storage:link`  
+
+[目次に戻る](#目次)
 
 ## mailhogを利用した会員登録に関して
 
 1. 会員登録画面にて登録後、ブラウザにてhttp://localhost:8025にアクセス
 2. 送信されたメールをリアルタイムで確認
 3. 登録したメールアドレスを選択後、メールアドレスの確認を押すと会員登録が完了しプロフィール設定画面に遷移する
+
+[目次に戻る](#目次)
 
 ## Stripe決済テストに関して
 
@@ -77,6 +82,7 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
    - 名前  `任意の名前`
 4. 入力画面に記入後支払うを押すと購入が完了となる
 
+[目次に戻る](#目次)
 
 ### コンビニ支払いテストに関して
 
@@ -103,6 +109,8 @@ stripe決済画面に遷移したあと
 
 このメールアドレスを使用することで、テスト環境でコンビニ支払いのフローを正しくシミュレートできます。このアドレスは、Stripeのテスト環境で即時に成功する支払いをトリガーします。
 
+[目次に戻る](#目次)
+
 ## PHPunitテストに関して
 - docker-compose exec php bash
 1. `cp .env.testing.example .env.testing`
@@ -116,6 +124,8 @@ stripe決済画面に遷移したあと
 
 > [!NOTE]
 > .env.testingにもStripeのAPIキーを設定してください
+
+[目次に戻る](#目次)
 
 ## [テストアカウント](pplx://action/followup)
 
@@ -132,6 +142,8 @@ stripe決済画面に遷移したあと
 - phpMyAdmin:http://localhost:8080
 - phpMyAdmin_testing:http://localhost:8081
 
+[目次に戻る](#目次)
+
 ## [技術スタック](pplx://action/followup)
 
 | 技術 | バージョン |
@@ -143,5 +155,9 @@ stripe決済画面に遷移したあと
 | Stripe | 16.4.0 |
 | MailHog | 最新版 |
 
+[目次に戻る](#目次)
+
 ## ER図
 ![coachtech-frima-app drawio](https://github.com/user-attachments/assets/086152e8-ecf6-4e06-8306-1555ccbe8126)
+
+[目次に戻る](#目次)
