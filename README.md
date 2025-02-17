@@ -82,7 +82,7 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 コンビニ決済にてStripe webhookを使用します
 
-#### Webhook設定
+### Webhook設定
 
 - `docker-compose exec php bash`
 - `stripe login`
@@ -98,6 +98,10 @@ stripe決済画面に遷移したあと
 - メールアドレス `succeed_immediately@test.com`
 - 名前 `任意の名前`
 - 支払いを押す
+> [!NOTE]
+> メールアドレス：succeed_immediately@test.com
+
+このメールアドレスを使用することで、テスト環境でコンビニ支払いのフローを正しくシミュレートできます。このアドレスは、Stripeのテスト環境で即時に成功する支払いをトリガーします。
 
 ## PHPunitテストに関して
 - docker-compose exec php bash
@@ -108,7 +112,7 @@ stripe決済画面に遷移したあと
 5. `php artisan test --testsuite=Feature`
 
 - 個別テストの場合は
-- php artisan test tests/Feature/〇〇Test.php
+- `php artisan test tests/Feature/〇〇Test.php`
 
 > [!NOTE]
 > .env.testingにもStripeのAPIキーを設定してください
