@@ -70,11 +70,11 @@ STRIPE_SECRET=sk_test_51XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 1. カード支払いを選択し購入するを押す
 2. stripe決済画面に遷移した後
-   - メールアドレス 任意のメールアドレス
-   - カード番号 4242 4242 4242 4242
-   - 有効期限 12/34
-   - CVC 123
-   - 名前  任意の名前
+   - メールアドレス `任意のメールアドレス`
+   - カード番号 `4242 4242 4242 4242`
+   - 有効期限 `12/34`
+   - CVC `123`
+   - 名前  `任意の名前`
 4. 入力画面に記入後支払うを押すと購入が完了となる
 
 
@@ -95,8 +95,8 @@ STRIPE_WEBHOOK_SECRET=whsec_XXXXXXXX
 コンビニ支払いを選択し購入するを押す
 
 stripe決済画面に遷移したあと
-- メールアドレスsucceed_immediately@test.com
-- 名前 任意の名前
+- メールアドレス `succeed_immediately@test.com`
+- 名前 `任意の名前`
 支払いを押す
 
 ## PHPunitテストに関して
