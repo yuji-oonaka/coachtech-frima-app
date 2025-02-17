@@ -28,7 +28,7 @@ coachtechフリマ
 
 ## 環境構築
 ### Dockerビルド
-1. `git@github.com:yuji-oonaka/coachtech-frima-app.git`
+1. `git clone git@github.com:yuji-oonaka/coachtech-frima-app.git`
 2. `docker-compose up -d --build`
 
 ### Laravel環境構築
