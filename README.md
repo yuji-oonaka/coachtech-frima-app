@@ -1,5 +1,3 @@
-こちらをMarkdown形式で整形しました。READMEとして利用できる体裁になっています。  
-
 ***
 
 # coachtechフリマ  
@@ -152,6 +150,3 @@ Note: `.env.testing` にも Stripe API キーを設定してください。
 `coachtech-frima-app.drawio`  
 
 ***
-
-この内容をREADME.mdとして使える体裁にしました。  
-追加で「画面キャプチャ」や「実行手順フロー図」も追記しますか？
